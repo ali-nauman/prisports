@@ -1,1 +1,29 @@
-<h1 class="m-2">Prisports</h1>
+<nav class="navbar navbar-expand-lg navbar-light bg-primary">
+
+    <a class="navbar-brand text-light" routerLink="">PriSports</a>
+
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse d-flex justify-content-between" id="navbarNav">
+        <ul class="navbar-nav">
+            <li class="nav-item">
+                <a class="nav-link text-light" routerLink="">Home</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link text-light" routerLink="admin/dashboard">Admin Dashboard</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link text-light" routerLink="">Coach Dashboard</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link text-light" routerLink="player/dashboard">Player Dashboard</a>
+            </li>
+        </ul>
+
+        <a class="text-light" routerLink="">Login</a>
+    </div>
+</nav>
+<router-outlet></router-outlet>
