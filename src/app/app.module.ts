@@ -5,12 +5,16 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { AdminDashboardComponent } from './components/admin-dashboard/admin-dashboard.component';
 import { PlayerDashboardComponent } from './components/player-dashboard/player-dashboard.component';
+import { HomeComponent } from './components/home/home.component';
+import { LoginComponent } from './components/login/login.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     AdminDashboardComponent,
-    PlayerDashboardComponent
+    PlayerDashboardComponent,
+    HomeComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
