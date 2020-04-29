@@ -11,10 +11,10 @@ import { CoachDashboardComponent } from './components/coach-dashboard/coach-dash
 const routes: Routes = [
   { path: "admin/dashboard", component: AdminDashboardComponent },
   { path: "player/dashboard", component: PlayerDashboardComponent },
-  { path: "home", component: HomeComponent },
+  { path: "", component: HomeComponent },
   { path: "login", component: LoginComponent },
-  { path: "register", component:RegistrationComponent },
-  { path: "coach/dashboard", component:CoachDashboardComponent }
+  { path: "register", component: RegistrationComponent },
+  { path: "coach/dashboard", component: CoachDashboardComponent }
 
 ];
 
