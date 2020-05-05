@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
+import { RestService } from 'src/app/services/rest.service';
 
 @Component({
   selector: 'app-login',
@@ -9,7 +10,7 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 export class LoginComponent implements OnInit {
   loginForm : FormGroup;
 
-  constructor(private formBuilder: FormBuilder) {
+  constructor(private formBuilder: FormBuilder, private restService: RestService) {
     this.loginForm = this.formBuilder.group(
       {
         email: '',
@@ -18,10 +19,12 @@ export class LoginComponent implements OnInit {
    }
 
   login() {
-    // Use this.loginForm.get('email).value to use the email
+    let email = this.loginForm.get('email').value;
+    let password = this.loginForm.get('password').value;
+
+    this.restService.authenticate(email, password);
    }
 
   ngOnInit(): void {
   }
-
 }
