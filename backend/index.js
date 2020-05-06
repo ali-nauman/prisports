@@ -1,13 +1,12 @@
-const http = require('http');
+const cors = require('cors');
 const bodyParser = require('body-parser');
 const express = require('express');
-const cors = require('cors');
+const http = require('http');
 
 const accountsRouter = require('./routes/accounts');
 
 const hostname = 'localhost';
 const port = 3000;
-
 const app = express();
 
 app.use(bodyParser.json());
