@@ -18,10 +18,10 @@ app.use(cors());
 app.use('/accounts', accountsRouter);
 
 var connectionString = 'mongodb://localhost/prisports';
-mongoose.connect(connectionString, { useNewUrlParser: true });
+mongoose.connect(connectionString, { useNewUrlParser: true, useUnifiedTopology: true });
 var dbConnection = mongoose.connection;
 
-db.once('open', () => {
+dbConnection.once('open', () => {
     console.log(`Connected to ${connectionString}...`);
 });
 dbConnection.on('error', () => {
