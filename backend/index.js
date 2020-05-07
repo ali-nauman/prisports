@@ -3,7 +3,8 @@ const express = require('express');
 const http = require('http');
 var mongoose = require('mongoose');
 
-require('./models/user.model');
+const seedDatabase = require('./database/databaseSeeder');
+// require('./models/user.model');
 
 const accountsRouter = require('./routes/accounts');
 
@@ -16,12 +17,13 @@ app.use(cors());
 
 app.use('/accounts', accountsRouter);
 
-var connectionString = 'mongodb://localhost/prisports';
-mongoose.connect(connectionString, { useNewUrlParser: true, useUnifiedTopology: true });
+var connectionString = 'mongodb://localhost:27017/prisports';
+mongoose.connect(connectionString, { useNewUrlParser: true, useUnifiedTopology: true, useCreateIndex: true });
 var dbConnection = mongoose.connection;
 
 dbConnection.once('open', () => {
     console.log(`Connected to ${connectionString}...`);
+    seedDatabase();
 });
 dbConnection.on('error', () => {
     console.error(`Error: Couldn't connect to ${connectionString}!`);
