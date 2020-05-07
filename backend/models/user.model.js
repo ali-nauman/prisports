@@ -8,9 +8,11 @@ var userSchema = new mongoose.Schema({
     emailAddress: {type: String, lowercase: true, unique: true, required: [true, "This field cannot be empty"], match: [/\S+@\S+\.\S+/, 'is invalid'], index: true},
     hashedPassword: {type: String, required: [true,"This field cannot be empty"]},
     phoneNumber: {type: String, required: [true,"This field cannot be empty"]},
-    role: String
+    role: {type: String, required: [true,"This field cannot be empty"]}
 });
 
 UserSchema.plugin(uniqueValidator, {message: 'is already taken.'});
 mongoose.model('User', userSchema);
 UserSchema.plugin(AutoIncrement, {inc_field: 'id'});
+
+module.exports = userSchema;
