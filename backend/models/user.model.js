@@ -11,8 +11,8 @@ var userSchema = new mongoose.Schema({
     role: { type: String, required: [true, "This field cannot be empty"] }
 });
 
-UserSchema.plugin(uniqueValidator, { message: 'is already taken.' });
-UserSchema.plugin(AutoIncrement, { inc_field: 'id' });
+userSchema.plugin(uniqueValidator, { message: 'is already taken.' });
+userSchema.plugin(AutoIncrement, { inc_field: 'id' });
 
 let Users = mongoose.model('User', userSchema);
 
