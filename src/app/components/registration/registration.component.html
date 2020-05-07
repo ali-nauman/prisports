@@ -40,6 +40,27 @@
                         placeholder="********" required>
                 </div>
             </div>
+            
+            <p class="mt-3">Your Sports:</p>
+            <div class="row">
+                <div class="col">
+                    <select class="custom-select" formControlName="sport1" required>
+                        <option value="0" disabled>--Chose Sport--</option>
+                        <option value="tennis">Tennis</option>
+                        <option value="badminton">Badmintion</option>
+                        <option value="tabletennis">Table Tennis</option>
+                        <option value="squash">Squash</option>
+                    </select>
+                </div>
+                <div class="col">
+                    <select class="custom-select" formControlName="rank1" required>
+                        <option value="0" disabled>-Select Rank--</option>
+                        <option value="beginner">Beginner</option>
+                        <option value="medium">Medium</option>
+                        <option value="advance">Advance</option>
+                    </select>
+                </div>
+            </div>
 
             <button class="btn btn-primary mt-4" (click)="register()">Submit</button>
 

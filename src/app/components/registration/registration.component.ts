@@ -8,24 +8,31 @@ import { RestService } from 'src/app/services/rest.service';
   styleUrls: ['./registration.component.css']
 })
 export class RegistrationComponent implements OnInit {
+  sports = ['Tennis', 'Badmintion', 'Table-tennis', 'Squash'];
   registrationForm: FormGroup;
 
-  constructor(private formBuilder: FormBuilder, private restService: RestService) {
+  constructor(private formBuilder: FormBuilder, private restService: RestService) {   }
+
+  ngOnInit(): void {
     this.registrationForm = this.formBuilder.group(
       {
         firstName: '',
         lastName: '',
         email: '',
         password: '',
-        confirmPassword: ''
+        confirmPassword: '',
+        sport1: '0',
+        rank1: '0'
       });
-   }
-
-  ngOnInit(): void {
   }
 
   register() {
-    
+    let firstname = this.registrationForm.get('firstName').value;
+    let lastname = this.registrationForm.get('lastName').value;
+    let mail = this.registrationForm.get('email').value;
+    let pswrd = this.registrationForm.get('password').value;
+    let sport1 = this.registrationForm.get('sport1').value;
+    let rank1 = this.registrationForm.get('rank1').value;
+    console.log(firstname, lastname, mail, pswrd, sport1,rank1);
   }
-
 }
