@@ -29,10 +29,11 @@ export class RegistrationComponent implements OnInit {
   register() {
     let firstname = this.registrationForm.get('firstName').value;
     let lastname = this.registrationForm.get('lastName').value;
-    let mail = this.registrationForm.get('email').value;
-    let pswrd = this.registrationForm.get('password').value;
+    let email = this.registrationForm.get('email').value;
+    let password = this.registrationForm.get('password').value;
     let sport1 = this.registrationForm.get('sport1').value;
     let rank1 = this.registrationForm.get('rank1').value;
-    console.log(firstname, lastname, mail, pswrd, sport1,rank1);
+    this.restService.registerUser(firstname, lastname, email, password, sport1, rank1);
+    // console.log(firstname, lastname, mail, pswrd, sport1,rank1);
   }
 }
