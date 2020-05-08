@@ -7,7 +7,7 @@ var userSchema = new mongoose.Schema({
     lastName: { type: String, required: [true, "This field cannot be empty"] },
     emailAddress: { type: String, lowercase: true, unique: true, required: [true, "This field cannot be empty"], match: [/\S+@\S+\.\S+/, 'is invalid'], index: true },
     password: { type: String, required: [true, "This field cannot be empty"] },
-    phoneNumber: { type: String, required: [true, "This field cannot be empty"] },
+    // phoneNumber: { type: String, required: [true, "This field cannot be empty"] },
     role: { type: String, required: [true, "This field cannot be empty"] }
 });
 

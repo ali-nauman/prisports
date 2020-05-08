@@ -9,7 +9,7 @@ function seedDatabase() {
                 lastName: "Doe",
                 emailAddress: "john.doe@gmail.com",
                 password: "$2b$10$qiDK.uihjQmt7jhJa2wG9eK34zfFGCF6i9x9appiVp8LuXCEPdkFK",
-                phoneNumber: "123456789",
+                // phoneNumber: "123456789",
                 role: "Player"
             }).then((user) => {
                 console.log("Created user: ", user);
