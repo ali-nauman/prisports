@@ -6,10 +6,10 @@ const Users = require('../models/user.model');
 const APP_SECRET = "myappsecret";
 
 exports.loginUser = async (req, res) => {
-    console.log(`POST /accounts/login { email: ${req.body.email} }`);
+    console.log(`POST /accounts/login { email: ${req.body.emailAddress} }`);
 
     try {
-        const user = await Users.findOne({ emailAddress: req.body.email });
+        const user = await Users.findOne({ emailAddress: req.body.emailAddress });
 
         if (user) {
             const isPasswordSame = await bcrypt.compare(req.body.password, user.password);
@@ -32,25 +32,29 @@ exports.loginUser = async (req, res) => {
     }
 }
 
-exports.RegisterUser = async (req, res) => {
-    console.log(`POST /accounts/login { email: ${req.body.email} }`);
+exports.registerUser = async (req, res) => {
+    console.log(`POST /accounts/register { email: ${req.body.emailAddress} }`);
+
     try {
-        const user = await Users.findOne({ emailAddress: req.body.email });
+        const user = await Users.findOne({ emailAddress: req.body.emailAddress });
         if (user) {
             res.json({ success: false, message: "This email already exists. Please use another email ID" });
             res.end();
         }
         else {
-            Users.create({
+            let hashedPassword = await bcrypt.hash(req.body.password, 10);
+            let user = await Users.create({
                 firstName: req.body.firstName,
                 lastName: req.body.lastName,
-                emailAddress: req.body.email,
-                password: req.body.password,
-                // phoneNumber: "123456789",
+                emailAddress: req.body.emailAddress,
+                phoneNumber: req.body.phoneNumber,
+                password: hashedPassword,
                 role: "Player"
-            }).then((user) => {
-                console.log("Created user: ", user);
-            })
+            });
+
+            console.log("Created user: ", user);
+            res.json(user);
+            res.end();
         }
     } catch (err) {
         console.error(err);
