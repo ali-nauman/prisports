@@ -31,3 +31,28 @@ exports.loginUser = async (req, res) => {
         console.error(err);
     }
 }
+
+exports.RegisterUser = async (req, res) => {
+    console.log(`POST /accounts/login { email: ${req.body.email} }`);
+    try {
+        const user = await Users.findOne({ emailAddress: req.body.email });
+        if (user) {
+            res.json({ success: false, message: "This email already exists. Please use another email ID" });
+            res.end();
+        }
+        else {
+            Users.create({
+                firstName: req.body.firstName,
+                lastName: req.body.lastName,
+                emailAddress: req.body.email,
+                password: req.body.password,
+                // phoneNumber: "123456789",
+                role: "Player"
+            }).then((user) => {
+                console.log("Created user: ", user);
+            })
+        }
+    } catch (err) {
+        console.error(err);
+    }
+}
