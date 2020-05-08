@@ -4,7 +4,6 @@ const http = require('http');
 var mongoose = require('mongoose');
 
 const seedDatabase = require('./database/databaseSeeder');
-// require('./models/user.model');
 
 const accountsRouter = require('./routes/accounts');
 
