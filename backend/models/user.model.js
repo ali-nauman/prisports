@@ -1,8 +1,8 @@
-var mongoose = require('mongoose');
-var uniqueValidator = require('mongoose-unique-validator');
+const mongoose = require('mongoose');
+const uniqueValidator = require('mongoose-unique-validator');
 const AutoIncrement = require('mongoose-sequence')(mongoose);
 
-var userSchema = new mongoose.Schema({
+const userSchema = new mongoose.Schema({
     firstName: { type: String, required: [true, "This field cannot be empty"] },
     lastName: { type: String, required: [true, "This field cannot be empty"] },
     emailAddress: { type: String, lowercase: true, unique: true, required: [true, "This field cannot be empty"], match: [/\S+@\S+\.\S+/, 'is invalid'], index: true },
@@ -14,6 +14,4 @@ var userSchema = new mongoose.Schema({
 userSchema.plugin(uniqueValidator, { message: 'is already taken.' });
 userSchema.plugin(AutoIncrement, { inc_field: 'id' });
 
-let Users = mongoose.model('User', userSchema);
-
-module.exports = Users;
+module.exports = mongoose.model('User', userSchema);
