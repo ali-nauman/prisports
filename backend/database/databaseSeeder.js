@@ -1,6 +1,7 @@
 const bcrypt = require('bcrypt');
 
 const Users = require('../models/user.model');
+const Sports = require('../models/sport.model');
 
 function seedDatabase() {
     Users.countDocuments({})
@@ -8,7 +9,14 @@ function seedDatabase() {
             if (count == 0) {
                 addUsers();
             }
-        })
+        });
+
+    Sports.countDocuments({})
+        .then((count) => {
+            if (count == 0) {
+                addSports();
+            }
+        });
 }
 
 async function addUsers() {
@@ -40,4 +48,21 @@ async function addUsers() {
     });
 }
 
+async function addSports() {
+    await Sports.create({
+        name: "Badminton"
+    });
+
+    await Sports.create({
+        name: "Squash"
+    });
+
+    await Sports.create({
+        name: "Table Tennis"
+    });
+
+    await Sports.create({
+        name: "Tennis"
+    });
+}
 module.exports = seedDatabase;
