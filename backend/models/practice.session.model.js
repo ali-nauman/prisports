@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 // const AutoIncrement = require('mongoose-sequence')(mongoose);
 
-const matchSchema = new mongoose.Schema({
+const practiceSessionSchema = new mongoose.Schema({
     courtId: { type: mongoose.Types.ObjectId, ref: 'Court', required: true },
     coachId: { type: mongoose.Types.ObjectId, ref: 'User', required: true },
     playerAId: { type: mongoose.Types.ObjectId, ref: 'User', required: true },
@@ -10,6 +10,6 @@ const matchSchema = new mongoose.Schema({
     endTime: { type: Date, required: true }
 });
 
-// matchSchema.plugin(AutoIncrement, { inc_field: 'id' });
+// practiceSessionSchema.plugin(AutoIncrement, { inc_field: 'id' });
 
-module.exports = mongoose.model('Match', matchSchema);
+module.exports = mongoose.model('PracticeSession', practiceSessionSchema);
