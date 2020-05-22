@@ -4,6 +4,7 @@ const http = require('http');
 
 const database = require('./database/database');
 const accountsRouter = require('./routes/accounts');
+const coachesRouter = require('./routes/coaches');
 
 const hostname = 'localhost';
 const port = 3000;
@@ -13,6 +14,7 @@ app.use(express.json());
 app.use(cors());
 
 app.use('/accounts', accountsRouter);
+app.use('/coaches', coachesRouter);
 
 database.connectWithDatabase();
 
