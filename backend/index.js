@@ -5,8 +5,8 @@ const morgan = require('morgan');
 const passport = require('passport');
 
 const database = require('./database/database');
-const accountsRouter = require('./routes/accounts');
-const coachesRouter = require('./routes/coaches');
+const accountsRouter = require('./routers/account.router');
+const coachesRouter = require('./routers/coach.router');
 
 const hostname = 'localhost';
 const port = 3000;
