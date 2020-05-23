@@ -1,11 +1,9 @@
-const Matches = require('../models/match.model');
-const PracticeSessions = require('../models/practice.session.model');
+const Match = require('../models/match.model');
+const PracticeSession = require('../models/practice.session.model');
 
 exports.getMatches = async (req, res, next) => {
-    console.log(`GET /coaches/${req.params.coachId}/matches`);
-
     try {
-        const matches = await Matches.find({ coachId: req.params.coachId })
+        const matches = await Match.find({ coachId: req.params.coachId })
             .populate('courtId', { name: 1, _id: 0 })
             .populate('coachId', { firstName: 1, lastName: 1, _id: 0 })
             .populate('playerAId', { firstName: 1, lastName: 1, _id: 0 })
@@ -19,10 +17,8 @@ exports.getMatches = async (req, res, next) => {
 }
 
 exports.getPracticeSessions = async (req, res, next) => {
-    console.log(`GET /coaches/${req.params.coachId}/practiceSessions`);
-
     try {
-        const practiceSessions = await PracticeSessions.find({ coachId: req.params.coachId })
+        const practiceSessions = await PracticeSession.find({ coachId: req.params.coachId })
             .populate('courtId', { name: 1, _id: 0 })
             .populate('coachId', { firstName: 1, lastName: 1, _id: 0 })
             .populate('playerAId', { firstName: 1, lastName: 1, _id: 0 })
