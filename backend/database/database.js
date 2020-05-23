@@ -1,15 +1,15 @@
 const mongoose = require('mongoose');
 
+const config = require('../config');
 const seedDatabase = require('./databaseSeeder');
 
-let dbConnection = null;
-let connectionString = 'mongodb://localhost:27017/prisports';
+let connectionString = config.mongoUrl;
 
 exports.connectWithDatabase = async () => {
     try {
         await mongoose.connect(connectionString, { useNewUrlParser: true, useUnifiedTopology: true, useCreateIndex: true, useFindAndModify: false });
 
-        dbConnection = mongoose.connection;
+        let dbConnection = mongoose.connection;
         dbConnection.dropDatabase();
         seedDatabase();
 
@@ -18,5 +18,4 @@ exports.connectWithDatabase = async () => {
         console.error(`Error: Couldn't connect to ${connectionString}!`);
         console.error(error);
     }
-    return dbConnection;
 }
