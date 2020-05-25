@@ -11,6 +11,7 @@ import { HomeComponent } from './components/home/home.component';
 import { LoginComponent } from './components/login/login.component';
 import { RegistrationComponent } from './components/registration/registration.component';
 import { CoachDashboardComponent } from './components/coach-dashboard/coach-dashboard.component';
+import { CoachTableComponent } from './components/coach-table/coach-table.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { CoachDashboardComponent } from './components/coach-dashboard/coach-dash
     HomeComponent,
     LoginComponent,
     RegistrationComponent,
-    CoachDashboardComponent
+    CoachDashboardComponent,
+    CoachTableComponent
   ],
   imports: [
     BrowserModule,
