@@ -2,6 +2,7 @@ const User = require('../models/user.model');
 const Sport = require('../models/sport.model');
 const Court = require('../models/court.model');
 const PracticeSession = require('../models/practice.session.model');
+const Match = require('../models/match.model');
 
 async function seedDatabase() {
     try {
@@ -9,6 +10,7 @@ async function seedDatabase() {
         await addSports();
         await addCourts();
         await addPracticeSessions();
+        await addMatches();
     } catch (error) {
         console.error(error);
     }
@@ -96,7 +98,20 @@ async function addPracticeSessions() {
         let playerAId = (await User.findOne({ firstName: "John", lastName: "Doe" }))._id;
         let playerBId = (await User.findOne({ lastName: "Wick" }))._id;
 
-        await PracticeSession.create({ courtId: courtId, coachId: coachId, playerAId: playerAId, playerBId: playerBId, startTime: Date(), endTime: Date() });
+        await PracticeSession.create({ courtId: courtId, coachId: coachId, playerAId: playerAId, playerARank: "Unranked", playerBId: playerBId, playerBRank: "Unranked", startTime: Date(), endTime: Date() });
+    } catch (error) {
+        console.error(error);
+    }
+}
+
+async function addMatches() {
+    try {
+        let courtId = (await Court.findOne({ name: "TenC1" }))._id;
+        let coachId = (await User.findOne({ role: "Coach" }))._id;
+        let playerAId = (await User.findOne({ lastName: "Wick" }))._id;
+        let playerBId = (await User.findOne({ firstName: "John", lastName: "Doe" }))._id;
+
+        await Match.create({ courtId: courtId, coachId: coachId, playerAId: playerAId, playerARank: "Unranked", playerBId: playerBId, playerBRank: "Unranked", startTime: Date(), endTime: Date() });
     } catch (error) {
         console.error(error);
     }
