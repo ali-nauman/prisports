@@ -4,7 +4,7 @@ const passport = require('passport');
 const authenticate = require('../authenticate');
 const User = mongoose.model('User');
 
-exports.loginUser = (req, res) => {
+exports.logIn = (req, res) => {
     var token = authenticate.getToken({ _id: req.user._id });
 
     res.statusCode = 200;
@@ -16,7 +16,17 @@ exports.loginUser = (req, res) => {
     });
 }
 
-exports.registerUser = async (req, res) => {
+exports.logOut = (req, res) => {
+    req.logOut();
+
+    res.statusCode = 200;
+    res.setHeader('Content-Type', 'application/json');
+    res.json({
+        success: true
+    });
+}
+
+exports.register = async (req, res) => {
     try {
         await User.register(new User({
             firstName: req.body.firstName,
