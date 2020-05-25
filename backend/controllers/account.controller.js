@@ -10,8 +10,8 @@ exports.loginUser = (req, res) => {
     res.setHeader('Content-Type', 'application/json');
     res.json({
         success: true,
-        status: 'You are successfully logged in!',
-        token: token
+        token: token,
+        role: req.user.role
     });
 }
 
