@@ -1,4 +1,6 @@
-const User = require('../models/user.model');
+const mongoose = require('mongoose');
+
+const User = mongoose.model('User');
 
 exports.getPlayers = async (req, res, next) => {
     try {
@@ -12,7 +14,7 @@ exports.getPlayers = async (req, res, next) => {
 
 exports.getCoaches = async (req, res, next) => {
     try {
-        const coach = await User.find({ role:'Coach' });
+        const coach = await User.find({ role: 'Coach' });
         res.statusCode = 200;
         res.json(coach);
     } catch (err) {

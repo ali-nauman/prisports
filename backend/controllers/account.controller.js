@@ -1,7 +1,8 @@
+const mongoose = require('mongoose');
 const passport = require('passport');
 
 const authenticate = require('../authenticate');
-const User = require('../models/user.model');
+const User = mongoose.model('User');
 
 exports.loginUser = (req, res) => {
     var token = authenticate.getToken({ _id: req.user._id });
