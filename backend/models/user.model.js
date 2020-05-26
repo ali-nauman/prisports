@@ -11,6 +11,16 @@ const userSchema = new mongoose.Schema({
     role: { type: String, required: [true, "This field cannot be empty"] }
 });
 
+userSchema.method('toJSON', function () {
+    return {
+        firstName: this.firstName,
+        lastName: this.lastName,
+        emailAddress: this.emailAddress,
+        phoneNumber: this.phoneNumber,
+        role: this.role
+    };
+});
+
 userSchema.plugin(passportLocalMongoose, { usernameField: 'emailAddress' });
 userSchema.plugin(uniqueValidator, { message: 'is already taken.' });
 userSchema.plugin(AutoIncrement, { inc_field: 'id' });
