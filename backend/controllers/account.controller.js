@@ -12,7 +12,7 @@ exports.logIn = (req, res) => {
     res.json({
         success: true,
         token: token,
-        role: req.user.role
+        user: req.user
     });
 }
 
