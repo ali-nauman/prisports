@@ -9,10 +9,6 @@ export class RestService {
 
   constructor(private http: HttpClient) { }
 
-  authenticate(emailAddress: string, password: string): any {
-    return this.http.post(`${this.baseUrl}/accounts/login`, { emailAddress: emailAddress, password: password }, { responseType: 'json', observe: 'body' })
-  }
-
   registerUser(firstName: string, lastName: string, emailAddress: string, phoneNumber: string, password: string, sport1: string, rank1: string): any {
     return this.http.post<any>(`${this.baseUrl}/accounts/register`, {
       firstName: firstName, lastName: lastName, emailAddress: emailAddress, phoneNumber: phoneNumber, password: password,
