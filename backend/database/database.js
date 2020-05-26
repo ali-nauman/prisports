@@ -7,11 +7,18 @@ let connectionString = config.mongoUrl;
 
 exports.connectWithDatabase = async () => {
     try {
-        await mongoose.connect(connectionString, { useNewUrlParser: true, useUnifiedTopology: true, useCreateIndex: true, useFindAndModify: false });
+        await mongoose.connect(
+            connectionString,
+            {
+                useNewUrlParser: true,
+                useUnifiedTopology: true,
+                useCreateIndex: true,
+                useFindAndModify: false
+            });
 
         let dbConnection = mongoose.connection;
-        dbConnection.dropDatabase();
-        seedDatabase();
+        await dbConnection.dropDatabase();
+        await seedDatabase();
 
         console.log(`Connected to ${connectionString}...`);
     } catch (error) {
