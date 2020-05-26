@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
-import { RestService } from 'src/app/services/rest.service';
 import { Router } from '@angular/router';
+import { AuthenticationService } from 'src/app/services/authentication.service';
 
 @Component({
   selector: 'app-login',
@@ -11,7 +11,7 @@ import { Router } from '@angular/router';
 export class LoginComponent implements OnInit {
   loginForm: FormGroup;
 
-  constructor(private formBuilder: FormBuilder, private restService: RestService, private router: Router) {
+  constructor(private formBuilder: FormBuilder, private authService: AuthenticationService, private router: Router) {
     this.loginForm = this.formBuilder.group(
       {
         email: '',
@@ -19,20 +19,11 @@ export class LoginComponent implements OnInit {
       });
   }
 
-  login() {
+  logIn() {
     let email = this.loginForm.get('email').value;
     let password = this.loginForm.get('password').value;
 
-    this.restService.authenticate(email, password).subscribe(
-      res => {
-        if (res.success) {
-          localStorage.setItem('token', res.token);
-          if (res.role == "Admin") { this.router.navigate(['admin/dashboard']); }
-          else if (res.role == "Coach") { this.router.navigate(['coach/dashboard']); }
-          else { this.router.navigate(['player/dashboard']); }
-        }
-      },
-      err => console.error(err));
+    this.authService.logIn(email, password);
   }
 
   ngOnInit(): void {
