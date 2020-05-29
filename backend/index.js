@@ -7,6 +7,7 @@ const passport = require('passport');
 const database = require('./database/database');
 const accountsRouter = require('./routers/account.router');
 const coachesRouter = require('./routers/coach.router');
+const playerRouter = require('./routers/player.router');
 
 const hostname = 'localhost';
 const port = 3000;
@@ -19,6 +20,7 @@ app.use(passport.initialize());
 
 app.use('/accounts', accountsRouter);
 app.use('/coaches', coachesRouter);
+app.use('/players', playerRouter);
 
 database.connectWithDatabase();
 
