@@ -122,7 +122,6 @@ async function addMatches() {
 
 async function addAttendance() {
     try {
-        //todo: current player set? 
         let playerId = (await User.findOne({ lastName: "Wick" }))._id;
         await Attendance.create({ playerID: playerId, checkinTime: Date()});
     } catch (error) {
