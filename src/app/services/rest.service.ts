@@ -9,11 +9,15 @@ export class RestService {
 
   constructor(private http: HttpClient) { }
 
-  registerUser(firstName: string, lastName: string, emailAddress: string, phoneNumber: string, password: string, sport1: string, rank1: string): any {
-    return this.http.post<any>(`${this.baseUrl}/accounts/register`, {
-      firstName: firstName, lastName: lastName, emailAddress: emailAddress, phoneNumber: phoneNumber, password: password,
-      sport1: sport1, rank1: rank1
-    }, { responseType: 'json', observe: 'body' });
+  // registerUser(firstName: string, lastName: string, emailAddress: string, phoneNumber: string, password: string, sport1: string, rank1: string): any {
+  //   return this.http.post<any>(`${this.baseUrl}/accounts/register`, {
+  //     firstName: firstName, lastName: lastName, emailAddress: emailAddress, phoneNumber: phoneNumber, password: password,
+  //     sport1: sport1, rank1: rank1
+  //   }, { responseType: 'json', observe: 'body' });
+  // }
+
+  registerUser(registerFormData: any): any {
+    return this.http.post<any>(`${this.baseUrl}/accounts/register`, registerFormData, { responseType: 'json', observe: 'body' });
   }
 
   getMatches() {
@@ -71,5 +75,4 @@ export class RestService {
   getPlayerSchedule() {
     return null;
   }
-
 }

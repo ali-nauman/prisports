@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormBuilder, FormArray } from '@angular/forms';
+import { FormGroup, FormBuilder, FormArray, Validators } from '@angular/forms';
 import { RestService } from 'src/app/services/rest.service';
 
 @Component({
@@ -8,7 +8,7 @@ import { RestService } from 'src/app/services/rest.service';
   styleUrls: ['./registration.component.css']
 })
 export class RegistrationComponent implements OnInit {
-  sports = ['Tennis', 'Badmintion', 'Table-tennis', 'Squash'];
+  sports = ['Tennis', 'Badminton', 'Table Tennis', 'Squash'];
   registrationForm: FormGroup;
 
   constructor(private formBuilder: FormBuilder, private restService: RestService) { }
@@ -16,49 +16,41 @@ export class RegistrationComponent implements OnInit {
   ngOnInit(): void {
     this.registrationForm = this.formBuilder.group(
       {
-        firstName: '',
-        lastName: '',
-        emailAddress: '',
-        phoneNumber: '',
-        password: '',
-        confirmedPassword: '',
-        sport1: '',
-        rank1: '',
-        sports: this.formBuilder.array([])
+        firstName: ['', Validators.required],
+        lastName: ['', Validators.required],
+        emailAddress: ['', Validators.required],
+        phoneNumber: ['', Validators.required],
+        password: ['', Validators.required],
+        confirmedPassword: ['', Validators.required],
+        sports: this.formBuilder.array([this.formBuilder.group({
+          sportName: ['', Validators.required],
+          sportRank: ['', Validators.required],
+        })])
       })
-
-      this.registrationForm.valueChanges.subscribe(console.log);
   }
 
   register() {
-    let firstname = this.registrationForm.get('firstName').value;
-    let lastname = this.registrationForm.get('lastName').value;
-    let emailAddress = this.registrationForm.get('emailAddress').value;
-    let phoneNumber = this.registrationForm.get('phoneNumber').value;
     let password = this.registrationForm.get('password').value;
     let confirmedPassword = this.registrationForm.get('confirmedPassword').value;
-    let sport1 = this.registrationForm.get('sport1').value;
-    let rank1 = this.registrationForm.get('rank1').value;
 
     if (password == confirmedPassword) {
-      this.restService.registerUser(firstname, lastname, emailAddress, phoneNumber, password, sport1, rank1);
+      this.restService.registerUser(this.registrationForm.value);
     }
   }
 
-  get sportForms(){
+  get sportForms() {
     return this.registrationForm.get('sports') as FormArray;
   }
 
-  addSport(){
+  addSport() {
     const sport = this.formBuilder.group({
-      sportName: [],
-      sportRank: [],
+      sportName: ['', Validators.required],
+      sportRank: ['', Validators.required]
     })
     this.sportForms.push(sport);
-    console.log("add");
   }
 
-  deleteSport(i){
+  deleteSport(i) {
     this.sportForms.removeAt(i);
   }
 }

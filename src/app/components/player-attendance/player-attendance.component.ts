@@ -16,5 +16,4 @@ export class PlayerAttendanceComponent implements OnInit {
       res => this.data = res,
       err => console.error(err));
   }
-
 }
