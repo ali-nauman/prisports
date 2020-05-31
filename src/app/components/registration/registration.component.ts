@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormBuilder } from '@angular/forms';
+import { FormGroup, FormBuilder, FormArray } from '@angular/forms';
 import { RestService } from 'src/app/services/rest.service';
 
 @Component({
@@ -23,8 +23,11 @@ export class RegistrationComponent implements OnInit {
         password: '',
         confirmedPassword: '',
         sport1: '',
-        rank1: ''
-      });
+        rank1: '',
+        sports: this.formBuilder.array([])
+      })
+
+      this.registrationForm.valueChanges.subscribe(console.log);
   }
 
   register() {
@@ -40,5 +43,22 @@ export class RegistrationComponent implements OnInit {
     if (password == confirmedPassword) {
       this.restService.registerUser(firstname, lastname, emailAddress, phoneNumber, password, sport1, rank1);
     }
+  }
+
+  get sportForms(){
+    return this.registrationForm.get('sports') as FormArray;
+  }
+
+  addSport(){
+    const sport = this.formBuilder.group({
+      sportName: [],
+      sportRank: [],
+    })
+    this.sportForms.push(sport);
+    console.log("add");
+  }
+
+  deleteSport(i){
+    this.sportForms.removeAt(i);
   }
 }
