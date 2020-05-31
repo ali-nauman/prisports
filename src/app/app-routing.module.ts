@@ -11,6 +11,7 @@ import { FullwidthComponent } from './layouts/fullwidth/fullwidth.component';
 import { CoachMatchesComponent } from './components/coach-matches/coach-matches.component';
 import { CoachPracticeSessionsComponent } from './components/coach-practice-sessions/coach-practice-sessions.component';
 import { PlayerMatchesComponent } from './components/player-matches/player-matches.component';
+import { PlayerPracticeSessionsComponent } from './components/player-practice-sessions/player-practice-sessions.component';
 
 const routes: Routes = [
   {
@@ -47,6 +48,9 @@ const routes: Routes = [
     }, {
       path: 'player/matches',
       component: PlayerMatchesComponent
+    }, {
+      path: 'player/practiceSessions',
+      component: PlayerPracticeSessionsComponent
     }
     ]
   }

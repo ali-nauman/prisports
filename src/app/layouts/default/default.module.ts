@@ -13,6 +13,7 @@ import { CoachPracticeSessionsComponent } from 'src/app/components/coach-practic
 import { PlayerTableComponent } from 'src/app/components/player-table/player-table.component';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { PlayerMatchesComponent } from 'src/app/components/player-matches/player-matches.component';
+import { PlayerPracticeSessionsComponent } from 'src/app/components/player-practice-sessions/player-practice-sessions.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { PlayerMatchesComponent } from 'src/app/components/player-matches/player
     CoachPracticeSessionsComponent,
     PlayerDashboardComponent,
     PlayerTableComponent,
-    PlayerMatchesComponent
+    PlayerMatchesComponent,
+    PlayerPracticeSessionsComponent
   ],
   imports: [
     CommonModule,
