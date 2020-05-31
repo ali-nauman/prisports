@@ -2,7 +2,7 @@ const mongoose = require("mongoose");
 
 const Match = mongoose.model("Match");
 const PracticeSession = mongoose.model("PracticeSession");
-const Attendance=mongoose.model("PlayerAttendance");
+const Attendance = mongoose.model("PlayerAttendance");
 
 // playerAId: req.playerAId
 exports.getMatches = async (req, res, next) => {
@@ -14,7 +14,7 @@ exports.getMatches = async (req, res, next) => {
       .populate("playerAId", { firstName: 1, lastName: 1, _id: 0 })
       .populate("playerBId", { firstName: 1, lastName: 1, _id: 0 })
       .populate("coachId", { firstName: 1, lastName: 1, _id: 0 });
- 
+
     res.statusCode = 200;
     res.json(matches);
   } catch (err) {
@@ -25,8 +25,8 @@ exports.getMatches = async (req, res, next) => {
 exports.getPracticeSessions = async (req, res, next) => {
   try {
     const practiceSessions = await PracticeSession.find({
-        $or: [{ playerAId: req.user._id }, { playerBId: req.user._id }],
-      })
+      $or: [{ playerAId: req.user._id }, { playerBId: req.user._id }],
+    })
       .populate("courtId", { name: 1, _id: 0 })
       .populate("playerAId", { firstName: 1, lastName: 1, _id: 0 })
       .populate("playerBId", { firstName: 1, lastName: 1, _id: 0 })
@@ -41,9 +41,8 @@ exports.getPracticeSessions = async (req, res, next) => {
 
 exports.getAttendance = async (req, res, next) => {
   try {
-    const attendance = await Attendance.find({playerId: req.user._id })
-      .populate("playerId", { firstName: 1, lastName: 1, _id: 0 })
-      .populate("checkinTime", {checkinTime: 1});
+    const attendance = await Attendance.find({ playerId: req.user._id })
+      .populate("playerId", { firstName: 1, lastName: 1, _id: 0 });
 
     res.statusCode = 200;
     res.json(attendance);

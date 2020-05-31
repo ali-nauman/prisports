@@ -3,7 +3,7 @@ const Sport = require('../models/sport.model');
 const Court = require('../models/court.model');
 const PracticeSession = require('../models/practice.session.model');
 const Match = require('../models/match.model');
-const Attendance =require ('../models/player.attendance.model');
+const Attendance = require('../models/player.attendance.model');
 
 async function seedDatabase() {
     try {
@@ -119,11 +119,10 @@ async function addMatches() {
     }
 }
 
-
 async function addAttendance() {
     try {
         let playerId = (await User.findOne({ lastName: "Wick" }))._id;
-        await Attendance.create({ playerID: playerId, checkinTime: Date()});
+        await Attendance.create({ playerId: playerId, checkinTime: Date() });
     } catch (error) {
         console.error(error);
     }
