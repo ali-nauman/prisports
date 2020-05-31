@@ -1,25 +1,31 @@
 <div class="row">
     <div class="col-2">
         <ul class="list-group">
-            <li class="list-group-item">
-                <a routerLink="player/dashboard">Attendance</a>
-            </li>
-
-            <li class="list-group-item">
-                <a routerLink="player/dashboard">Today's Schedule</a>
-            </li>
-
-            <li class="list-group-item">
-                <a routerLink="player/dashboard">Practice Sessions</a>
-            </li>
-
-            <li class="list-group-item">
-                <a routerLink="player/dashboard">Matches</a>
-            </li>
+            <li class="list-group-item" (click)="changeDisplay('attendance')">Attendance</li>
+            <li class="list-group-item" (click)="changeDisplay('schedule')">Today's Schedule </li>
+            <li class="list-group-item" (click)="changeDisplay('sessions')">Practice Sessions</li>
+            <li class="list-group-item" (click)="changeDisplay('matches')">Matches </li>
         </ul>
     </div>
 
     <div class="col-10 mt-3">
-        This part is under construction...
+        <div *ngIf="display == 'sessions'">
+            <h2>Practice Sessions</h2>
+            <app-player-table [rows]="data"></app-player-table>
+        </div>
+
+        <div *ngIf="display == 'matches'">
+            <h2>Matches</h2>
+            <app-player-table [rows]="data"></app-player-table>
+        </div>
+        <div *ngIf="display == 'attendance'">
+            <h2>Attendance</h2>
+            <app-player-table [rows]="data"></app-player-table>
+        </div>
+
+        <div *ngIf="display == 'schedule'">
+            <h2>Today's Schedule</h2>
+            <app-player-table [rows]="data"></app-player-table>
+        </div>
     </div>
 </div>

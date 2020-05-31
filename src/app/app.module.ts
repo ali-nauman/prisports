@@ -13,6 +13,7 @@ import { RegistrationComponent } from './components/registration/registration.co
 import { CoachDashboardComponent } from './components/coach-dashboard/coach-dashboard.component';
 import { CoachTableComponent } from './components/coach-table/coach-table.component';
 import { NavigationBarComponent } from './components/navigation-bar/navigation-bar.component';
+import { PlayerTableComponent } from './components/player-table/player-table.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { NavigationBarComponent } from './components/navigation-bar/navigation-b
     RegistrationComponent,
     CoachDashboardComponent,
     CoachTableComponent,
-    NavigationBarComponent
+    NavigationBarComponent,
+    PlayerTableComponent
   ],
   imports: [
     BrowserModule,

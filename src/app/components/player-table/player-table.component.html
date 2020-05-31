@@ -1,0 +1,37 @@
+<table class="table mt-4">
+    <thead class="thead-dark">
+        <th>Player A</th>
+        <th>Rank</th>
+        <th>Player B</th>
+        <th>Rank</th>
+        <th>Court</th>
+        <th>Start Time</th>
+        <th>End Time</th>
+    </thead>
+    <tbody>
+        <tr *ngFor="let row of rows">
+            <td>{{row.playerAId.firstName}} {{row.playerAId.lastName}}</td>
+            <td>{{row.playerARank}}</td>
+            <td>{{row.playerBId.firstName}} {{row.playerBId.lastName}}</td>
+            <td>{{row.playerBRank}}</td>
+            <td>{{row.courtId.name}}</td>
+            <td>{{row.startTime | date:'medium'}}</td>
+            <td>{{row.endTime | date:'medium'}}</td>
+            <td><button class="btn btn-primary">Assign Ranks</button></td>
+        </tr>
+    </tbody>
+</table>
+
+<!-- 
+<table class="table mt-4">
+    <thead class="thead-dark">
+        <th>Player ID</th>
+        <th>Attendance</th>
+    </thead>
+    <tbody>
+        <tr *ngFor="let row of rows">
+            <td>{{row.playerAId.firstName}} {{row.playerAId.lastName}}</td> -->
+            <!-- <td>{{row.Attendance}}</td>
+        </tr>
+    </tbody>
+</table> --> 

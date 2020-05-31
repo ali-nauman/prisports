@@ -3,6 +3,7 @@ const Sport = require('../models/sport.model');
 const Court = require('../models/court.model');
 const PracticeSession = require('../models/practice.session.model');
 const Match = require('../models/match.model');
+const Attendance =require ('../models/player.attendance.model');
 
 async function seedDatabase() {
     try {
@@ -11,6 +12,7 @@ async function seedDatabase() {
         await addCourts();
         await addPracticeSessions();
         await addMatches();
+        await addAttendance();
     } catch (error) {
         console.error(error);
     }
@@ -112,6 +114,17 @@ async function addMatches() {
         let playerBId = (await User.findOne({ firstName: "John", lastName: "Doe" }))._id;
 
         await Match.create({ courtId: courtId, coachId: coachId, playerAId: playerAId, playerARank: "Unranked", playerBId: playerBId, playerBRank: "Unranked", startTime: Date(), endTime: Date() });
+    } catch (error) {
+        console.error(error);
+    }
+}
+
+
+async function addAttendance() {
+    try {
+        //todo: current player set? 
+        let playerId = (await User.findOne({ lastName: "Wick" }))._id;
+        await Attendance.create({ playerID: playerId, checkinTime: Date()});
     } catch (error) {
         console.error(error);
     }

@@ -35,4 +35,37 @@ export class RestService {
     };
     return this.http.get<any>(`${this.baseUrl}/coaches/practiceSessions`, httpOptions);
   }
+
+  
+  getPlayerPracticeSessions() {
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        'Authorization': `bearer ${localStorage.getItem('token')}`
+      })
+    };
+    return this.http.get<any>(`${this.baseUrl}/players/practiceSessions`, httpOptions);
+  }
+
+
+  getPlayerMatches() {
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        'Authorization': `bearer ${localStorage.getItem('token')}`
+      })
+    };
+    return this.http.get<any>(`${this.baseUrl}/players/matches`, httpOptions);
+  }
+
+  getAttendance() {
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        'Authorization': `bearer ${localStorage.getItem('token')}`
+      })
+    };
+    return this.http.get<any>(`${this.baseUrl}/players/playerAttendance`, httpOptions);
+  }
+
 }
