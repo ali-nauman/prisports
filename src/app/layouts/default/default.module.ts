@@ -15,6 +15,7 @@ import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { PlayerMatchesComponent } from 'src/app/components/player-matches/player-matches.component';
 import { PlayerPracticeSessionsComponent } from 'src/app/components/player-practice-sessions/player-practice-sessions.component';
 import { PlayerAttendanceComponent } from 'src/app/components/player-attendance/player-attendance.component';
+import { PlayerScheduleComponent } from 'src/app/components/player-schedule/player-schedule.component';
 
 @NgModule({
   declarations: [
@@ -28,7 +29,8 @@ import { PlayerAttendanceComponent } from 'src/app/components/player-attendance/
     PlayerTableComponent,
     PlayerMatchesComponent,
     PlayerPracticeSessionsComponent,
-    PlayerAttendanceComponent
+    PlayerAttendanceComponent,
+    PlayerScheduleComponent
   ],
   imports: [
     CommonModule,

@@ -13,6 +13,7 @@ import { CoachPracticeSessionsComponent } from './components/coach-practice-sess
 import { PlayerMatchesComponent } from './components/player-matches/player-matches.component';
 import { PlayerPracticeSessionsComponent } from './components/player-practice-sessions/player-practice-sessions.component';
 import { PlayerAttendanceComponent } from './components/player-attendance/player-attendance.component';
+import { PlayerScheduleComponent } from './components/player-schedule/player-schedule.component';
 
 const routes: Routes = [
   {
@@ -55,6 +56,9 @@ const routes: Routes = [
     }, {
       path: 'player/attendance',
       component: PlayerAttendanceComponent
+    }, {
+      path: 'player/schedule',
+      component: PlayerScheduleComponent
     }
     ]
   }

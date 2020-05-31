@@ -36,7 +36,7 @@ export class RestService {
     return this.http.get<any>(`${this.baseUrl}/coaches/practiceSessions`, httpOptions);
   }
 
-  
+
   getPlayerPracticeSessions() {
     const httpOptions = {
       headers: new HttpHeaders({
@@ -66,6 +66,10 @@ export class RestService {
       })
     };
     return this.http.get<any>(`${this.baseUrl}/players/playerAttendance`, httpOptions);
+  }
+
+  getPlayerSchedule() {
+    return null;
   }
 
 }
