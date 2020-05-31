@@ -1,4 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-coach-table',
@@ -6,11 +7,18 @@ import { Component, OnInit, Input } from '@angular/core';
   styleUrls: ['./coach-table.component.css']
 })
 export class CoachTableComponent implements OnInit {
-  @Input() rows: any;
+  @Input() rows: any[];
+  @Input() displayType: string;
 
-  constructor() { }
+  constructor(private router: Router) { }
 
   ngOnInit(): void {
+  }
+
+  assignRanks(id) {
+    if (this.displayType == "sessions") {
+      this.router.navigate(['assign-ranks/', id])
+    }
   }
 
 }

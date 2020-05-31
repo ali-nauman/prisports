@@ -7,6 +7,7 @@
         <th>Court</th>
         <th>Start Time</th>
         <th>End Time</th>
+        <th>Edit</th>
     </thead>
     <tbody>
         <tr *ngFor="let row of rows">
@@ -17,7 +18,14 @@
             <td>{{row.courtId.name}}</td>
             <td>{{row.startTime | date:'medium'}}</td>
             <td>{{row.endTime | date:'medium'}}</td>
-            <td><button class="btn btn-primary">Assign Ranks</button></td>
+            <td>
+                <button class="btn btn-primary" (click)="assignRanks(row._id)">Assign Ranks</button>
+            </td>
+            <!-- <td>
+                <span [routerLink]="['assign-ranks/', row._id]">
+                    <button class="btn btn-primary">Assign Ranks</button>
+                </span>
+            </td> -->
         </tr>
     </tbody>
 </table>

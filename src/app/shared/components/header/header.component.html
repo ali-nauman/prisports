@@ -9,12 +9,9 @@
 
     <div class="collapse navbar-collapse d-flex justify-content-between" id="navbarNav">
         <ul class="navbar-nav">
-            <li class="nav-item">
-                <a class="nav-link text-light" routerLink="">Home</a>
-            </li>
         </ul>
 
-        <a *ngIf="!displayLogOutButton" class="text-light" routerLink="login">Login</a>
+        <a *ngIf="!displayLogOutButton" class="text-light" routerLink="/login">Login</a>
         <a *ngIf="displayLogOutButton" class="text-light" (click)="logOut()">Logout</a>
 
     </div>

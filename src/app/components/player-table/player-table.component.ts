@@ -7,9 +7,9 @@ import { Component, OnInit, Input } from '@angular/core';
 })
 export class PlayerTableComponent implements OnInit {
   @Input() rows: any;
+
   constructor() { }
 
   ngOnInit(): void {
   }
-
 }
