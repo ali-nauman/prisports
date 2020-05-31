@@ -56,10 +56,6 @@
 
             <h4 class="mt-4">Sports</h4>
             
-            Value: {{ registrationForm.value | json }}
-
-            <hr>
-            
             <div formArrayName="sports">
                 <div *ngFor="let sport of sportForms.controls; let i=index" [formGroupName]="i">
 
@@ -67,7 +63,6 @@
 
                         <div class="col">
                             <div class="input-group">
-                                <!-- <label class="input-group-text" for="sportName">Sport:</label> -->
                                 <div class="input-group-prepend">
                                     <label class="input-group-text" for="sportName">Sport</label>
                                   </div>
@@ -82,7 +77,6 @@
                         </div>
 
                         <div class="col">
-                            <!-- <label for="sportRank">Rank:</label> -->
                             <div class="input-group">
                                 <div class="input-group-prepend">
                                     <label class="input-group-text" for="sportRank">Rank</label>
