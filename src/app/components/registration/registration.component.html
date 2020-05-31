@@ -55,31 +55,58 @@
             </div>
 
             <h4 class="mt-4">Sports</h4>
-            <div class="row">
-                <div class="col">
-                    <div class="form-group">
-                        <label for="sport1">Sport</label>
-                        <select class="custom-select" formControlName="sport1" id="sport1" required>
-                            <option disabled selected>Choose a sport</option>
-                            <option value="badminton">Badminton</option>
-                            <option value="squash">Squash</option>
-                            <option value="tableTennis">Table Tennis</option>
-                            <option value="tennis">Tennis</option>
-                        </select>
-                    </div>
-                </div>
+            
+            Value: {{ registrationForm.value | json }}
 
-                <div class="col">
-                    <div class="form-group">
-                        <label for="rank1">Rank</label>
-                        <select class="custom-select" formControlName="rank1" required>
-                            <option disabled selected>Select a rank</option>
-                            <option value="beginner">Beginner</option>
-                            <option value="medium">Medium</option>
-                            <option value="advanced">Advanced</option>
-                        </select>
+            <hr>
+            
+            <div formArrayName="sports">
+                <div *ngFor="let sport of sportForms.controls; let i=index" [formGroupName]="i">
+
+                    <div class="row my-3 mx-2 align-items-center">
+
+                        <div class="col">
+                            <div class="input-group">
+                                <!-- <label class="input-group-text" for="sportName">Sport:</label> -->
+                                <div class="input-group-prepend">
+                                    <label class="input-group-text" for="sportName">Sport</label>
+                                  </div>
+                                <select class="custom-select" formControlName="sportName" required>
+                                    <option selected>Choose...</option>
+                                    <option value="badminton">Badminton</option>
+                                    <option value="squash">Squash</option>
+                                    <option value="tableTennis">Table Tennis</option>
+                                    <option value="tennis">Tennis</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="col">
+                            <!-- <label for="sportRank">Rank:</label> -->
+                            <div class="input-group">
+                                <div class="input-group-prepend">
+                                    <label class="input-group-text" for="sportRank">Rank</label>
+                                  </div>
+                                <select class="custom-select" formControlName="sportRank" required>
+                                    <option selected>Choose...</option>
+                                    <option value="beginner">Beginner</option>
+                                    <option value="medium">Medium</option>
+                                    <option value="advanced">Advanced</option>
+                                </select>
+                            </div>
+                        </div>
+                        
+                        <div class="col-2 align-self-end">
+                            <button class="btn btn-danger" (click)="deleteSport(i)">Delete</button>
+                        </div>
+
                     </div>
+
                 </div>
+            </div>
+            
+            <div class="row justify-content-center">
+                <button class="btn btn-success" (click)="addSport()">Add Sport</button>
             </div>
 
             <button class="btn btn-primary mt-4" type="submit">Submit</button>
