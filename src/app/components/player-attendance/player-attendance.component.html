@@ -1,4 +1,16 @@
 <div class="mt-3">
     <h2>Attendance</h2>
-    <app-player-table [rows]="data"></app-player-table>
+    <table class="table mt-4">
+        <thead class="thead-dark">
+            <th>Player </th>
+            <th>Attendance</th>
+        </thead>
+        <tbody>
+            <tr *ngFor="let row of data">
+                <td>{{row.playerId.firstName}} {{row.playerId.lastName}}</td>
+                <td>{{row.checkinTime}}</td>
+            </tr>
+        </tbody>
+    </table>
 </div>
+
