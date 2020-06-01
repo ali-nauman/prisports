@@ -18,6 +18,7 @@ import { PlayerAttendanceComponent } from 'src/app/components/player-attendance/
 import { PlayerScheduleComponent } from 'src/app/components/player-schedule/player-schedule.component';
 import { AdminManageCoachesComponent } from 'src/app/components/admin-manage-coaches/admin-manage-coaches.component';
 import { AdminManagePlayersComponent } from 'src/app/components/admin-manage-players/admin-manage-players.component';
+import { AdminGenerateSchedulesComponent } from 'src/app/components/admin-generate-schedules/admin-generate-schedules.component';
 
 @NgModule({
   declarations: [
@@ -25,6 +26,7 @@ import { AdminManagePlayersComponent } from 'src/app/components/admin-manage-pla
     AdminDashboardComponent,
     AdminManageCoachesComponent,
     AdminManagePlayersComponent,
+    AdminGenerateSchedulesComponent,
     CoachDashboardComponent,
     CoachTableComponent,
     CoachMatchesComponent,

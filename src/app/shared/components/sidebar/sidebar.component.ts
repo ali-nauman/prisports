@@ -16,6 +16,9 @@ export class SidebarComponent implements OnInit {
   }, {
     title: "Players",
     routerLink: "/admin/managePlayers"
+  }, {
+    title: "Schedules",
+    routerLink: "/admin/generateSchedules"
   }];
 
   coachItems = [{
