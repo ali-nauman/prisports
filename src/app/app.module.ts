@@ -7,6 +7,7 @@ import { AppComponent } from './app.component';
 import { DefaultModule } from './layouts/default/default.module';
 import { FullwidthModule } from './layouts/fullwidth/fullwidth.module';
 
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -16,7 +17,7 @@ import { FullwidthModule } from './layouts/fullwidth/fullwidth.module';
     HttpClientModule,
     AppRoutingModule,
     DefaultModule,
-    FullwidthModule
+    FullwidthModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
