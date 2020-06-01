@@ -20,7 +20,7 @@
                 <td>{{row.startTime | date:'medium'}}</td>
                 <td>{{row.endTime | date:'medium'}}</td>
                 <td>
-                    <button class="btn btn-primary">Assign Ranks</button>
+                    <button class="btn btn-primary" (click)="assignRanks(row)">Assign Ranks</button>
                 </td>
             </tr>
         </tbody>
