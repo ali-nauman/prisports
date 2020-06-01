@@ -10,12 +10,11 @@ export class HeaderComponent implements OnInit {
   displayLogOutButton = false;
   dashboardLink: string = "";
 
-  constructor(private authService: AuthenticationService) { }
+  constructor(private authService: AuthenticationService) {
+  }
 
   ngOnInit(): void {
-    this.authService.getIsUserLoggedIn().subscribe(
-      val => this.displayLogOutButton = val
-    )
+    this.displayLogOutButton = localStorage.getItem('user') != null;
   }
 
   logOut() {
