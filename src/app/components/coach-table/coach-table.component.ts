@@ -8,17 +8,9 @@ import { Router } from '@angular/router';
 })
 export class CoachTableComponent implements OnInit {
   @Input() rows: any[];
-  @Input() displayType: string;
 
   constructor(private router: Router) { }
 
   ngOnInit(): void {
   }
-
-  assignRanks(id) {
-    if (this.displayType == "sessions") {
-      this.router.navigate(['assign-ranks/', id])
-    }
-  }
-
 }
