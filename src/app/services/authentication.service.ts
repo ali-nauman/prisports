@@ -12,6 +12,16 @@ export class AuthenticationService {
     private http: HttpClient,
     private router: Router) { }
 
+  getUserRole(): string {
+    let role: string = null;
+
+    if (this.isUserLoggedIn()) {
+      return JSON.parse(localStorage.getItem('user')).role;
+    }
+
+    return role;
+  }
+
   isUserLoggedIn(): boolean {
     return localStorage.getItem('token') != null;
   }
