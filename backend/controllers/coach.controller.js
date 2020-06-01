@@ -62,3 +62,37 @@ exports.getPracticeSessions = async (req, res, next) => {
         console.error(err);
     }
 }
+
+exports.updateMatchRanks = async (req, res, next) => {
+    try {
+        const match = await Match.findByIdAndUpdate({
+            _id: req.params.matchId
+        }, {
+            $set: {
+                playerARank: req.body.playerARank,
+                playerBRank: req.body.playerBRank
+            }
+        });
+        res.statusCode = 200;
+        res.json(match);
+    } catch (err) {
+        console.error(err);
+    }
+}
+
+exports.updatePracticeSessionRanks = async (req, res, next) => {
+    try {
+        const match = await PracticeSession.findByIdAndUpdate({
+            _id: req.params.practiceSessionId
+        }, {
+            $set: {
+                playerARank: req.body.playerARank,
+                playerBRank: req.body.playerBRank
+            }
+        });
+        res.statusCode = 200;
+        res.json(match);
+    } catch (err) {
+        console.error(err);
+    }
+}

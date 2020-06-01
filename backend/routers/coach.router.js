@@ -10,4 +10,7 @@ coachRouter.get('/matches/:matchId', authenticate.verifyUser, authenticate.verif
 coachRouter.get('/practiceSessions', authenticate.verifyUser, authenticate.verifyCoach, coachController.getPracticeSessions);
 coachRouter.get('/practiceSessions/:practiceSessionId', authenticate.verifyUser, authenticate.verifyCoach, coachController.getPracticeSession);
 
+coachRouter.post('/matches/:matchId', authenticate.verifyUser, authenticate.verifyCoach, coachController.updateMatchRanks);
+coachRouter.post('/practiceSessions/:practiceSessionId', authenticate.verifyUser, authenticate.verifyCoach, coachController.updatePracticeSessionRanks);
+
 module.exports = coachRouter;
