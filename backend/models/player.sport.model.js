@@ -1,11 +1,11 @@
 const mongoose = require('mongoose');
-// const AutoIncrement = require('mongoose-sequence')(mongoose);
+const Schema = mongoose.Schema;
+const ObjectId = mongoose.Types.ObjectId;
 
-const playerSportSchema = new mongoose.Schema({
-    playerId: { type: mongoose.Types.ObjectId, ref: 'User', required: true },
-    sportId: { type: mongoose.Types.ObjectId, ref: 'Sport', required: true }
+const playerSportSchema = Schema({
+    playerId: { type: ObjectId, ref: 'User', required: true },
+    sportId: { type: ObjectId, ref: 'Sport', required: true },
+    rankId: { type: ObjectId, ref: 'Rank', required: true }
 });
-
-// playerSportSchema.plugin(AutoIncrement, { inc_field: 'id' });
 
 module.exports = mongoose.model('PlayerSport', playerSportSchema);
