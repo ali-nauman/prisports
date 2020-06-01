@@ -68,4 +68,24 @@ export class RestService {
   getPlayerSchedule() {
     return null;
   }
+
+  setMatchRanks(matchId: string, playerARank: string, playerBRank: string) {
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        'Authorization': `bearer ${localStorage.getItem('token')}`
+      })
+    };
+    return this.http.post<any>(`${this.baseUrl}/coaches/matches/${matchId}`, { playerARank, playerBRank }, httpOptions);
+  }
+
+  setPracticeSessionRanks(practiceSessionId: string, playerARank: string, playerBRank: string) {
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        'Authorization': `bearer ${localStorage.getItem('token')}`
+      })
+    };
+    return this.http.post<any>(`${this.baseUrl}/coaches/practiceSessions/${practiceSessionId}`, { playerARank, playerBRank }, httpOptions);
+  }
 }
