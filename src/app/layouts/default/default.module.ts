@@ -16,11 +16,13 @@ import { PlayerMatchesComponent } from 'src/app/components/player-matches/player
 import { PlayerPracticeSessionsComponent } from 'src/app/components/player-practice-sessions/player-practice-sessions.component';
 import { PlayerAttendanceComponent } from 'src/app/components/player-attendance/player-attendance.component';
 import { PlayerScheduleComponent } from 'src/app/components/player-schedule/player-schedule.component';
+import { AdminManageCoachesComponent } from 'src/app/components/admin-manage-coaches/admin-manage-coaches.component';
 
 @NgModule({
   declarations: [
     DefaultComponent,
     AdminDashboardComponent,
+    AdminManageCoachesComponent,
     CoachDashboardComponent,
     CoachTableComponent,
     CoachMatchesComponent,

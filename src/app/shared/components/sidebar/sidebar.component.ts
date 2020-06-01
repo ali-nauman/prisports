@@ -7,7 +7,10 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SidebarComponent implements OnInit {
   items: any;
-  adminItems: any;
+  adminItems = [{
+    title: "Dashboard",
+    routerLink: "/admin/dashboard"
+  },];
 
   coachItems = [{
     title: "Dashboard",
