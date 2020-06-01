@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AuthenticationService } from 'src/app/services/authentication.service';
 
 @Component({
   selector: 'app-sidebar',
@@ -49,19 +50,17 @@ export class SidebarComponent implements OnInit {
     routerLink: "/player/matches"
   }]
 
-  constructor() { }
+  constructor(private authService: AuthenticationService) { }
 
   ngOnInit(): void {
-    let user = JSON.parse(localStorage.getItem('user'));
+    this.setSideBarItems();
+  }
 
-    if (user.role == "Admin") {
-      this.items = this.adminItems;
-    }
-    else if (user.role == "Coach") {
-      this.items = this.coachItems;
-    }
-    else {
-      this.items = this.playerItems;
-    }
+  setSideBarItems() {
+    let userRole = this.authService.getUserRole();
+
+    if (userRole == "Admin") { this.items = this.adminItems; }
+    else if (userRole == "Coach") { this.items = this.coachItems; }
+    else { this.items = this.playerItems; }
   }
 }

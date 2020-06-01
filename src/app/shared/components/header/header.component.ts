@@ -21,21 +21,15 @@ export class HeaderComponent implements OnInit {
     this.setDashboardLink();
   }
 
-  private setDashboardLink(): void {
-    let userJSON = localStorage.getItem('user');
+  setDashboardLink(): void {
+    if (this.authService.isUserLoggedIn()) {
+      let userRole = this.authService.getUserRole();
 
-    if (userJSON) {
+      if (userRole == 'Admin') { this.dashboardLink = '/admin/dashboard'; }
+      else if (userRole == 'Coach') { this.dashboardLink = '/coach/dashboard'; }
+      else { this.dashboardLink = '/player/dashboard'; }
+
       this.displayDashboardLink = true;
-      let userRole = JSON.parse(userJSON).role;
-      if (userRole == 'Admin') {
-        this.dashboardLink = '/admin/dashboard';
-      }
-      else if (userRole == 'Coach') {
-        this.dashboardLink = '/coach/dashboard';
-      }
-      else {
-        this.dashboardLink = '/player/dashboard';
-      }
     }
   }
 
