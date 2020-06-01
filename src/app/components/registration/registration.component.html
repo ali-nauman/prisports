@@ -9,7 +9,7 @@
                     <div class="form-group">
                         <label for="firstName">First Name</label>
                         <input type="text" class="form-control" id="firstName" placeholder="John"
-                            formControlName="firstName">
+                            formControlName="firstName" required>
                     </div>
                 </div>
 
@@ -17,7 +17,7 @@
                     <div class="form-group">
                         <label for="lastName">Last Name</label>
                         <input type="text" class="form-control" id="lastName" formControlName="lastName"
-                            placeholder="Doe">
+                            placeholder="Doe" required>
                     </div>
                 </div>
             </div>
@@ -27,7 +27,7 @@
                     <div class="form-group">
                         <label for="email">Email Address</label>
                         <input type="email" class="form-control" id="emailAddress" formControlName="emailAddress"
-                            placeholder="john.doe@gmail.com">
+                            placeholder="john.doe@gmail.com" required>
                     </div>
                 </div>
 
@@ -35,7 +35,7 @@
                     <div class="form-group">
                         <label for="phoneNumber">Phone Number</label>
                         <input type="text" class="form-control" id="phoneNumber" formControlName="phoneNumber"
-                            placeholder="03013454128">
+                            placeholder="03013454128" required>
                     </div>
                 </div>
             </div>
@@ -44,13 +44,13 @@
                 <div class="col">
                     <label for="password">Password</label>
                     <input type="password" class="form-control" id="password" formControlName="password"
-                        placeholder="********">
+                        placeholder="********" required>
                 </div>
 
                 <div class="col">
                     <label for="confirmedPassword">Confirm Password</label>
                     <input type="password" class="form-control" id="confirmedPassword"
-                        formControlName="confirmedPassword" placeholder="********">
+                        formControlName="confirmedPassword" placeholder="********" required>
                 </div>
             </div>
 
@@ -66,9 +66,8 @@
                                 <div class="input-group-prepend">
                                     <label class="input-group-text" for="sportName">Sport</label>
                                 </div>
-                                <select class="custom-select" formControlName="sportName">
-                                    <!-- <option selected>Choose...</option> -->
-                                    <option value="Badminton">Badminton</option>
+                                <select class="custom-select" formControlName="sportName" required>
+                                    <option value="Badminton" selected>Badminton</option>
                                     <option value="Squash">Squash</option>
                                     <option value="Table Tennis">Table Tennis</option>
                                     <option value="Tennis">Tennis</option>
@@ -81,9 +80,8 @@
                                 <div class="input-group-prepend">
                                     <label class="input-group-text" for="sportRank">Rank</label>
                                 </div>
-                                <select class="custom-select" formControlName="sportRank">
-                                    <!-- <option selected>Choose...</option> -->
-                                    <option value="Beginner">Beginner</option>
+                                <select class="custom-select" formControlName="sportRank" required>
+                                    <option value="Beginner" s>Beginner</option>
                                     <option value="Medium">Medium</option>
                                     <option value="Advanced">Advanced</option>
                                 </select>

@@ -8,8 +8,11 @@ import { RestService } from 'src/app/services/rest.service';
   styleUrls: ['./registration.component.css']
 })
 export class RegistrationComponent implements OnInit {
-  sports = ['Tennis', 'Badminton', 'Table Tennis', 'Squash'];
   registrationForm: FormGroup;
+  sport = this.formBuilder.group({
+    name: ['', Validators.required],
+    rank: ['', Validators.required]
+  });
 
   constructor(private formBuilder: FormBuilder, private restService: RestService) { }
 
@@ -23,18 +26,18 @@ export class RegistrationComponent implements OnInit {
         password: ['', Validators.required],
         confirmedPassword: ['', Validators.required],
         sports: this.formBuilder.array([this.formBuilder.group({
-          sportName: ['', Validators.required],
-          sportRank: ['', Validators.required],
+          name: ['', Validators.required],
+          rank: ['', Validators.required],
         })])
-      })
+      });
   }
 
   register() {
     let password = this.registrationForm.get('password').value;
     let confirmedPassword = this.registrationForm.get('confirmedPassword').value;
 
-    if (password == confirmedPassword) {
-      this.restService.registerUser(this.registrationForm.value);
+    if (password === confirmedPassword) {
+      this.restService.registerUser(this.registrationForm.value).subscribe(res => console.log);
     }
   }
 
@@ -43,14 +46,10 @@ export class RegistrationComponent implements OnInit {
   }
 
   addSport() {
-    const sport = this.formBuilder.group({
-      sportName: ['', Validators.required],
-      sportRank: ['', Validators.required]
-    })
-    this.sportForms.push(sport);
+    this.sportForms.push(this.sport);
   }
 
-  deleteSport(i) {
+  deleteSport(i: number) {
     this.sportForms.removeAt(i);
   }
 }
