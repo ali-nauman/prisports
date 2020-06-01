@@ -1,0 +1,66 @@
+<div class="modal-header bg-primary text-light">
+    <h4 class="modal-title" id="modal-basic-title">Assign Ranks</h4>
+    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+        <span aria-hidden="true">&times;</span>
+    </button>
+</div>
+
+<div class="modal-body">
+    <form [formGroup]="assignRankForm">
+        <div class="form-group row">
+            <label class="col-form-label col-4 font-weight-bold" for="playerA">Player A</label>
+            <div class="col-7">
+                <input class="form-control-plaintext" type="text" id="playerA" formControlName="playerA" readonly>
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <label class="col-form-label col-4 font-weight-bold" for="playerARank">Player A Rank</label>
+            <select class="form-control col-7" id="playerARank" formControlName="playerARank">
+                <option *ngFor="let rank of ranks" [ngValue]="rank">{{rank}}</option>
+            </select>
+        </div>
+
+        <div class="form-group row">
+            <label class="col-form-label col-4 font-weight-bold" for="playerB">Player B</label>
+            <div class="col-7">
+                <input class="form-control-plaintext" type="text" id="playerB" formControlName="playerB" readonly>
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <label class="col-form-label col-4 font-weight-bold" for="playerBRank">Player B Rank</label>
+            <select class="form-control col-7" id="playerBRank" formControlName="playerBRank">
+                <option *ngFor="let rank of ranks" [ngValue]="rank" selected>{{rank}}</option>
+            </select>
+        </div>
+
+        <div class="form-group row">
+            <label class="col-form-label col-4 font-weight-bold" for="court">Court</label>
+            <div class="col-7">
+                <input class="form-control-plaintext" type="text" id="court" formControlName="court" readonly>
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <label class="col-form-label col-4 font-weight-bold" for="startTime">Start Time</label>
+            <div class="col-7">
+                <input class="form-control-plaintext" type="text" id="startTime" formControlName="startTime" readonly>
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <label class="col-form-label col-4 font-weight-bold" for="endTime">End Time</label>
+            <div class="col-7">
+                <input class="form-control-plaintext" type="text" id="endTime" formControlName="endTime" readonly>
+            </div>
+        </div>
+    </form>
+</div>
+
+<div class="modal-footer bg-light">
+    <button *ngIf="displaying == 'matches'" type="button" class="btn btn-primary"
+        (click)="assignMatchRanks()">Save</button>
+    <button *ngIf="displaying == 'sessions'" type="button" class="btn btn-primary"
+        (click)="assignPracticeSessionRanks()">Save</button>
+</div>

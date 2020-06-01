@@ -19,6 +19,8 @@ import { PlayerScheduleComponent } from 'src/app/components/player-schedule/play
 import { AdminManageCoachesComponent } from 'src/app/components/admin-manage-coaches/admin-manage-coaches.component';
 import { AdminManagePlayersComponent } from 'src/app/components/admin-manage-players/admin-manage-players.component';
 import { AdminGenerateSchedulesComponent } from 'src/app/components/admin-generate-schedules/admin-generate-schedules.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { CoachAssignRanksModalComponent } from 'src/app/components/coach-assign-ranks-modal/coach-assign-ranks-modal.component';
 
 @NgModule({
   declarations: [
@@ -31,19 +33,21 @@ import { AdminGenerateSchedulesComponent } from 'src/app/components/admin-genera
     CoachTableComponent,
     CoachMatchesComponent,
     CoachPracticeSessionsComponent,
+    CoachAssignRanksModalComponent,
     PlayerDashboardComponent,
     PlayerTableComponent,
     PlayerMatchesComponent,
     PlayerPracticeSessionsComponent,
     PlayerAttendanceComponent,
-    PlayerScheduleComponent
+    PlayerScheduleComponent,
   ],
   imports: [
     CommonModule,
     RouterModule,
     SharedModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    NgbModule
   ]
 })
 export class DefaultModule { }
