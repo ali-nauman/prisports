@@ -4,12 +4,16 @@ const Court = require('../models/court.model');
 const PracticeSession = require('../models/practice.session.model');
 const Match = require('../models/match.model');
 const Attendance = require('../models/player.attendance.model');
+const Rank = require('../models/rank.model');
+const PlayerSport = require('../models/player.sport.model');
 
 async function seedDatabase() {
     try {
-        await addUsers();
+        await addRanks();
         await addSports();
         await addCourts();
+        await addUsers();
+        await addPlayerSports();
         await addPracticeSessions();
         await addMatches();
         await addAttendance();
@@ -123,6 +127,45 @@ async function addAttendance() {
     try {
         let playerId = (await User.findOne({ lastName: "Wick" }))._id;
         await Attendance.create({ playerId: playerId, checkinTime: Date() });
+    } catch (error) {
+        console.error(error);
+    }
+}
+
+async function addRanks() {
+    try {
+        await Rank.create([{
+            name: "Beginner"
+        }, {
+            name: "Medium"
+        }, {
+            name: "Advanced"
+        }]);
+
+    } catch (error) {
+        console.error(error);
+    }
+}
+
+async function addPlayerSports() {
+    try {
+        let badmintonId = (await Sport.findOne({ name: "Badminton" }))._id;
+        let squashId = (await Sport.findOne({ name: "Squash" }))._id;
+        let tableTennisId = (await Sport.findOne({ name: "Table Tennis" }))._id;
+        let tennisId = (await Sport.findOne({ name: "Tennis" }))._id;
+
+        let beginnerId = (await Rank.findOne({ name: "Beginner" }))._id;
+        let mediumId = (await Rank.findOne({ name: "Medium" }))._id;
+        let advancedId = (await Rank.findOne({ name: "Advanced" }))._id;
+
+        let jWickId = (await User.findOne({ lastName: "Wick" }))._id;
+        let jDoeId = (await User.findOne({ firstName: "John", lastName: "Doe" }))._id;
+
+        await PlayerSport.create({ playerId: jWickId, sportId: badmintonId, rankId: beginnerId });
+        await PlayerSport.create({ playerId: jDoeId, sportId: badmintonId, rankId: beginnerId });
+        await PlayerSport.create({ playerId: jWickId, sportId: squashId, rankId: mediumId });
+        await PlayerSport.create({ playerId: jDoeId, sportId: tableTennisId, rankId: advancedId });
+        await PlayerSport.create({ playerId: jWickId, sportId: tennisId, rankId: advancedId });
     } catch (error) {
         console.error(error);
     }

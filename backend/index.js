@@ -5,6 +5,8 @@ const morgan = require('morgan');
 const passport = require('passport');
 
 const database = require('./database/database');
+database.connectWithDatabase();
+
 const accountsRouter = require('./routers/account.router');
 const coachesRouter = require('./routers/coach.router');
 const playerRouter = require('./routers/player.router');
@@ -22,7 +24,7 @@ app.use('/accounts', accountsRouter);
 app.use('/coaches', coachesRouter);
 app.use('/players', playerRouter);
 
-database.connectWithDatabase();
+
 
 const server = http.createServer(app);
 
