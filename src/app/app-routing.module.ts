@@ -15,6 +15,7 @@ import { PlayerPracticeSessionsComponent } from './components/player-practice-se
 import { PlayerAttendanceComponent } from './components/player-attendance/player-attendance.component';
 import { PlayerScheduleComponent } from './components/player-schedule/player-schedule.component';
 import { AdminManageCoachesComponent } from './components/admin-manage-coaches/admin-manage-coaches.component';
+import { AdminManagePlayersComponent } from './components/admin-manage-players/admin-manage-players.component';
 
 const routes: Routes = [
   {
@@ -39,6 +40,9 @@ const routes: Routes = [
     }, {
       path: 'admin/manageCoaches',
       component: AdminManageCoachesComponent
+    }, {
+      path: 'admin/managePlayers',
+      component: AdminManagePlayersComponent
     }, {
       path: 'coach/dashboard',
       component: CoachDashboardComponent

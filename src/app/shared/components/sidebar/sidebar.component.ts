@@ -10,7 +10,13 @@ export class SidebarComponent implements OnInit {
   adminItems = [{
     title: "Dashboard",
     routerLink: "/admin/dashboard"
-  },];
+  }, {
+    title: "Coaches",
+    routerLink: "/admin/manageCoaches"
+  }, {
+    title: "Players",
+    routerLink: "/admin/managePlayers"
+  }];
 
   coachItems = [{
     title: "Dashboard",
