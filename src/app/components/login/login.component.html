@@ -19,7 +19,8 @@
                     formControlName="password" required>
             </div>
 
-            <button class="btn btn-primary mb-2" type="submit" (click)="logIn()">Login</button>
+            <button class="btn btn-primary mb-2" [disabled]="!loginForm.valid" type="submit"
+                (click)="logIn()">Login</button>
         </form>
 
         <small>Don't have an account? <a routerLink="/register">Create an account</a></small>

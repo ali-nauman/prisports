@@ -12,7 +12,7 @@ export class CoachAssignRanksModalComponent implements OnInit {
   assignRankForm: FormGroup;
   ranks = ['Beginner', 'Medium', 'Advanced']
   row: any;
-  displaying: any;
+  displaying: string;
 
   constructor(
     public modal: NgbActiveModal,
@@ -20,7 +20,6 @@ export class CoachAssignRanksModalComponent implements OnInit {
     private restService: RestService) { }
 
   ngOnInit(): void {
-    console.log('Displaying: ', this.displaying);
     this.assignRankForm = this.formBuilder.group(
       {
         playerA: [`${this.row.playerAId.firstName} ${this.row.playerAId.lastName}`],
@@ -33,13 +32,13 @@ export class CoachAssignRanksModalComponent implements OnInit {
       })
   }
 
-  assignPracticeSessionRanks() {
-    this.modal.close();
+  assignPracticeSessionRanks(): void {
     this.restService.setPracticeSessionRanks(this.row._id, this.assignRankForm.value.playerARank, this.assignRankForm.value.playerBRank).subscribe(res => console.log);
+    this.modal.close();
   }
 
-  assignMatchRanks() {
-    this.modal.close();
+  assignMatchRanks(): void {
     this.restService.setMatchRanks(this.row._id, this.assignRankForm.value.playerARank, this.assignRankForm.value.playerBRank).subscribe(res => console.log);
+    this.modal.close();
   }
 }

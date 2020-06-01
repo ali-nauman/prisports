@@ -17,22 +17,25 @@ export class CoachTableComponent implements OnInit {
     private restService: RestService) { }
 
   ngOnInit(): void {
+    this.populateTable();
+  }
+
+  populateTable(): void {
     if (this.displaying == "matches") {
       this.restService.getMatches().subscribe(res => this.rows = res);
-    } else {
+    }
+    else {
       this.restService.getPracticeSessions().subscribe(res => this.rows = res);
     }
   }
 
-  assignRanks(row) {
+  assignRanks(row): void {
     const ref = this.modalService.open(CoachAssignRanksModalComponent);
     ref.componentInstance.row = row;
     ref.componentInstance.displaying = this.displaying;
 
-    ref.result.then(yes => {
-      console.log("Ok clicked!")
-    }, cancel => {
-      console.log("Cancel clicked!");
+    ref.result.then(onFulFilled => {
+      this.populateTable();
     });
   }
 }

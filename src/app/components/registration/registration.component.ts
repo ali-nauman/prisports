@@ -14,7 +14,9 @@ export class RegistrationComponent implements OnInit {
     rank: ['', Validators.required]
   });
 
-  constructor(private formBuilder: FormBuilder, private restService: RestService) { }
+  constructor(
+    private formBuilder: FormBuilder,
+    private restService: RestService) { }
 
   ngOnInit(): void {
     this.registrationForm = this.formBuilder.group(
@@ -32,7 +34,7 @@ export class RegistrationComponent implements OnInit {
       });
   }
 
-  register() {
+  register(): void {
     let password = this.registrationForm.get('password').value;
     let confirmedPassword = this.registrationForm.get('confirmedPassword').value;
 
@@ -41,15 +43,15 @@ export class RegistrationComponent implements OnInit {
     }
   }
 
-  get sportForms() {
+  get sportForms(): FormArray {
     return this.registrationForm.get('sports') as FormArray;
   }
 
-  addSport() {
+  addSport(): void {
     this.sportForms.push(this.sport);
   }
 
-  deleteSport(i: number) {
+  deleteSport(i: number): void {
     this.sportForms.removeAt(i);
   }
 }
