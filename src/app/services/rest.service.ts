@@ -76,7 +76,7 @@ export class RestService {
         'Authorization': `bearer ${localStorage.getItem('token')}`
       })
     };
-    return this.http.post<any>(`${this.baseUrl}/coaches/matches/${matchId}`, { playerARank, playerBRank }, httpOptions);
+    return this.http.put<any>(`${this.baseUrl}/coaches/matches/${matchId}`, { playerARank, playerBRank }, httpOptions);
   }
 
   setPracticeSessionRanks(practiceSessionId: string, playerARank: string, playerBRank: string) {
@@ -86,6 +86,6 @@ export class RestService {
         'Authorization': `bearer ${localStorage.getItem('token')}`
       })
     };
-    return this.http.post<any>(`${this.baseUrl}/coaches/practiceSessions/${practiceSessionId}`, { playerARank, playerBRank }, httpOptions);
+    return this.http.put<any>(`${this.baseUrl}/coaches/practiceSessions/${practiceSessionId}`, { playerARank, playerBRank }, httpOptions);
   }
 }
