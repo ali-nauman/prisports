@@ -171,4 +171,6 @@ async function addPlayerSports() {
     }
 }
 
+  
+  
 module.exports = seedDatabase;

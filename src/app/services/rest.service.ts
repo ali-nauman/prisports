@@ -50,8 +50,12 @@ export class RestService {
     return this.http.get<any>(`${this.baseUrl}/players/playerAttendance`, this.httpOptions);
   }
 
-  getPlayerSchedule() {
-    return null;
+  getPlayerPracticeSchedule() {
+    return this.http.get<any>(`${this.baseUrl}/players/playerPracticeSchedule`, this.httpOptions);
+  }
+  
+  getPlayerMatchSchedule() {
+    return this.http.get<any>(`${this.baseUrl}/players/playerMatchSchedule`, this.httpOptions);
   }
 
   setMatchRanks(matchId: string, playerARank: string, playerBRank: string) {

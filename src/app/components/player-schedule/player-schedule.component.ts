@@ -8,13 +8,17 @@ import { RestService } from 'src/app/services/rest.service';
 })
 export class PlayerScheduleComponent implements OnInit {
   data: any;
-
+  data2: any;
   constructor(private restService: RestService) { }
 
   ngOnInit(): void {
-    this.restService.getPlayerSchedule().subscribe(
+    this.restService.getPlayerPracticeSchedule().subscribe(
       res => this.data = res,
       err => console.error(err));
+    this.restService.getPlayerMatchSchedule().subscribe(
+        res => this.data2 = res,
+        err => console.error(err));
   }
+ 
 
 }

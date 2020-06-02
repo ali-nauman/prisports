@@ -52,19 +52,44 @@ exports.getAttendance = async (req, res, next) => {
 };
 
 
-// exports.getSchedule = async (req, res, next) => {
-//   try {
-//     const practiceSessions = await PracticeSession.find({
-//         $or: [{ playerAId: req.user._id }, { playerBId: req.user._id }],
-//       })
-//       .populate("courtId", { name: 1, _id: 0 })
-//       .populate("playerAId", { firstName: 1, lastName: 1, _id: 0 })
-//       .populate("playerBId", { firstName: 1, lastName: 1, _id: 0 })
-//       .populate("coachId", { firstName: 1, lastName: 1, _id: 0 });
+exports.getPlayerPracticeSessionSchedule = async (req, res, next) => {
+  try {
+    const practiceSessions = await PracticeSession.find({ 
+      "startTime" : 
+      {     
+          $gte:   new Date(new Date().setHours(00,00,00)) ,     
+          $lt :  new Date(new Date().setHours(23,59,59)) 
+     } 
+    })
+      .populate("courtId", { name: 1, _id: 0 })
+      .populate("playerAId", { firstName: 1, lastName: 1, _id: 0 })
+      .populate("playerBId", { firstName: 1, lastName: 1, _id: 0 })
+      .populate("coachId", { firstName: 1, lastName: 1, _id: 0 });
 
-//     res.statusCode = 200;
-//     res.json(practiceSessions);
-//   } catch (err) {
-//     console.error(err);
-//   }
-// };
+    res.statusCode = 200;
+    res.json(practiceSessions);
+  } catch (err) {
+    console.error(err);
+  }
+};
+
+exports.getPlayerMatchSchedule = async (req, res, next) => {
+  try {
+    const match = await Match.find({ 
+      "startTime" : 
+      {     
+          $gte:   new Date(new Date().setHours(00,00,00)) ,     
+          $lt :  new Date(new Date().setHours(23,59,59)) 
+     } 
+    })
+      .populate("courtId", { name: 1, _id: 0 })
+      .populate("playerAId", { firstName: 1, lastName: 1, _id: 0 })
+      .populate("playerBId", { firstName: 1, lastName: 1, _id: 0 })
+      .populate("coachId", { firstName: 1, lastName: 1, _id: 0 });
+
+    res.statusCode = 200;
+    res.json(match);
+  } catch (err) {
+    console.error(err);
+  }
+};
