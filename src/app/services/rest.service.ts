@@ -12,6 +12,26 @@ export class RestService {
   registerUser(registerationFormValue: any) {
     return this.http.post<any>(`${this.baseUrl}/accounts/register`, registerationFormValue, { responseType: 'json', observe: 'body' });
   }
+  
+  getPlayers() {
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        'Authorization': `bearer ${localStorage.getItem('token')}`
+      })
+    };
+    return this.http.get<any>(`${this.baseUrl}/admin/players`, httpOptions);
+  }
+
+  getCoaches() {
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        'Authorization': `bearer ${localStorage.getItem('token')}`
+      })
+    };
+    return this.http.get<any>(`${this.baseUrl}/admin/coaches`, httpOptions);
+  }
 
   getMatches() {
     const httpOptions = {
