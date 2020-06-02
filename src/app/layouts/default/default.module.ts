@@ -20,6 +20,7 @@ import { AdminManageCoachesComponent } from 'src/app/components/admin-manage-coa
 import { AdminManagePlayersComponent } from 'src/app/components/admin-manage-players/admin-manage-players.component';
 import { AdminGenerateSchedulesComponent } from 'src/app/components/admin-generate-schedules/admin-generate-schedules.component';
 import { AdminUserTableComponent } from "src/app/components/admin-user-table/admin-user-table.component";
+import { AdminUpdatePlayerComponent } from 'src/app/components/admin-update-player/admin-update-player.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { CoachAssignRanksModalComponent } from 'src/app/components/coach-assign-ranks-modal/coach-assign-ranks-modal.component';
 
@@ -31,6 +32,7 @@ import { CoachAssignRanksModalComponent } from 'src/app/components/coach-assign-
     AdminManagePlayersComponent,
     AdminUserTableComponent,
     AdminGenerateSchedulesComponent,
+    AdminUpdatePlayerComponent,
     CoachDashboardComponent,
     CoachTableComponent,
     CoachMatchesComponent,
