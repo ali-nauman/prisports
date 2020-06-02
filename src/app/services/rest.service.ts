@@ -1,88 +1,53 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { AbstractControl } from '@angular/forms';
 
 @Injectable({
   providedIn: 'root'
 })
 export class RestService {
   private baseUrl: string = 'http://localhost:3000';
+  private httpOptions = {
+    headers: new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Authorization': `bearer ${localStorage.getItem('token')}`
+    })
+  };
 
   constructor(private http: HttpClient) { }
 
-  registerUser(registerationFormValue: any) {
-    return this.http.post<any>(`${this.baseUrl}/accounts/register`, registerationFormValue, { responseType: 'json', observe: 'body' });
+  registerUser(registerationFormValue: AbstractControl) {
+    return this.http.post<any>(
+      `${this.baseUrl}/accounts/register`,
+      registerationFormValue);
   }
-  
+
   getPlayers() {
-    const httpOptions = {
-      headers: new HttpHeaders({
-        'Content-Type': 'application/json',
-        'Authorization': `bearer ${localStorage.getItem('token')}`
-      })
-    };
-    return this.http.get<any>(`${this.baseUrl}/admin/players`, httpOptions);
+    return this.http.get<any>(`${this.baseUrl}/admin/players`, this.httpOptions);
   }
 
   getCoaches() {
-    const httpOptions = {
-      headers: new HttpHeaders({
-        'Content-Type': 'application/json',
-        'Authorization': `bearer ${localStorage.getItem('token')}`
-      })
-    };
-    return this.http.get<any>(`${this.baseUrl}/admin/coaches`, httpOptions);
+    return this.http.get<any>(`${this.baseUrl}/admin/coaches`, this.httpOptions);
   }
 
   getMatches() {
-    const httpOptions = {
-      headers: new HttpHeaders({
-        'Content-Type': 'application/json',
-        'Authorization': `bearer ${localStorage.getItem('token')}`
-      })
-    };
-    return this.http.get<any>(`${this.baseUrl}/coaches/matches`, httpOptions);
+    return this.http.get<any>(`${this.baseUrl}/coaches/matches`, this.httpOptions);
   }
 
   getPracticeSessions() {
-    const httpOptions = {
-      headers: new HttpHeaders({
-        'Content-Type': 'application/json',
-        'Authorization': `bearer ${localStorage.getItem('token')}`
-      })
-    };
-    return this.http.get<any>(`${this.baseUrl}/coaches/practiceSessions`, httpOptions);
+    return this.http.get<any>(`${this.baseUrl}/coaches/practiceSessions`, this.httpOptions);
   }
-
 
   getPlayerPracticeSessions() {
-    const httpOptions = {
-      headers: new HttpHeaders({
-        'Content-Type': 'application/json',
-        'Authorization': `bearer ${localStorage.getItem('token')}`
-      })
-    };
-    return this.http.get<any>(`${this.baseUrl}/players/practiceSessions`, httpOptions);
+    return this.http.get<any>(`${this.baseUrl}/players/practiceSessions`, this.httpOptions);
   }
 
-
   getPlayerMatches() {
-    const httpOptions = {
-      headers: new HttpHeaders({
-        'Content-Type': 'application/json',
-        'Authorization': `bearer ${localStorage.getItem('token')}`
-      })
-    };
-    return this.http.get<any>(`${this.baseUrl}/players/matches`, httpOptions);
+    return this.http.get<any>(`${this.baseUrl}/players/matches`, this.httpOptions);
   }
 
   getAttendance() {
-    const httpOptions = {
-      headers: new HttpHeaders({
-        'Content-Type': 'application/json',
-        'Authorization': `bearer ${localStorage.getItem('token')}`
-      })
-    };
-    return this.http.get<any>(`${this.baseUrl}/players/playerAttendance`, httpOptions);
+    return this.http.get<any>(`${this.baseUrl}/players/playerAttendance`, this.httpOptions);
   }
 
   getPlayerSchedule() {
@@ -90,22 +55,16 @@ export class RestService {
   }
 
   setMatchRanks(matchId: string, playerARank: string, playerBRank: string) {
-    const httpOptions = {
-      headers: new HttpHeaders({
-        'Content-Type': 'application/json',
-        'Authorization': `bearer ${localStorage.getItem('token')}`
-      })
-    };
-    return this.http.put<any>(`${this.baseUrl}/coaches/matches/${matchId}`, { playerARank, playerBRank }, httpOptions);
+    return this.http.put<any>(
+      `${this.baseUrl}/coaches/matches/${matchId}`,
+      { playerARank, playerBRank },
+      this.httpOptions);
   }
 
   setPracticeSessionRanks(practiceSessionId: string, playerARank: string, playerBRank: string) {
-    const httpOptions = {
-      headers: new HttpHeaders({
-        'Content-Type': 'application/json',
-        'Authorization': `bearer ${localStorage.getItem('token')}`
-      })
-    };
-    return this.http.put<any>(`${this.baseUrl}/coaches/practiceSessions/${practiceSessionId}`, { playerARank, playerBRank }, httpOptions);
+    return this.http.put<any>(
+      `${this.baseUrl}/coaches/practiceSessions/${practiceSessionId}`,
+      { playerARank, playerBRank },
+      this.httpOptions);
   }
 }
