@@ -6,11 +6,13 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { DefaultModule } from './layouts/default/default.module';
 import { FullwidthModule } from './layouts/fullwidth/fullwidth.module';
+import { AdminUserTableComponent } from './components/admin-user-table/admin-user-table.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
+    AdminUserTableComponent,
   ],
   imports: [
     BrowserModule,
