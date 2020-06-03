@@ -15,8 +15,8 @@
                 <td>{{row.emailAddress}}</td>
                 <td>{{row.phoneNumber}}</td>
                 <td>
-                    <button class="btn btn-primary mr-2" (click)='editPlayer()'>Edit</button>
-                    <button class="btn btn-danger ml-2" (click)='deletePlayer()'>Delete</button>
+                    <button class="btn btn-primary mr-2" (click)='editPlayer(row)'>Edit</button>
+                    <button class="btn btn-danger ml-2" (click)='deletePlayer(row)'>Delete</button>
                 </td>
             </tr>
         </tbody>

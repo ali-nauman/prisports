@@ -1,5 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { RestService } from 'src/app/services/rest.service';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { AdminUpdateUserComponent } from '../admin-update-user/admin-update-user.component';
 
 @Component({
   selector: 'app-admin-user-table',
@@ -11,7 +13,8 @@ export class AdminUserTableComponent implements OnInit {
   @Input() rows: any[];
 
   constructor(
-    private restService: RestService
+    private restService: RestService,
+    private modalService: NgbModal
   ) {}
 
   ngOnInit(): void {
@@ -27,9 +30,20 @@ export class AdminUserTableComponent implements OnInit {
     }
   }
 
-  editPlayer(): void{}
+  editPlayer(row: any): void{
+    const ref = this.modalService.open(AdminUpdateUserComponent);
+    ref.componentInstance.row = row;
+    ref.componentInstance.displaying = this.displaying;
 
-  deletePlayer(): void{}
+    ref.result.then(onFulFilled => {
+      this.populateTable();
+    });
+  }
+
+  deletePlayer(row: any): void{
+   this.restService.deletePlayer(row._id).subscribe( res => this.rows.splice(row._id,1));
+   this.populateTable();
+  }
 
   createPlayer(): void{}
 }
