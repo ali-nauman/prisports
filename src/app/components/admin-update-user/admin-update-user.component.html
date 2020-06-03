@@ -1,1 +1,50 @@
-<p>admin-update-user works!</p>
+<div class="modal-header bg-primary text-light">
+    <h4 *ngIf="displaying == 'players'" class="modal-title" id="modal-basic-title">Edit Player</h4>
+    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+        <span aria-hidden="true">&times;</span>
+    </button>
+</div>
+
+<div class="modal-body">
+    <form [formGroup]="updateUserForm">
+        <div class="form-group row">
+            <label class="col-form-label col-4 font-weight-bold" for="firstName">First Name</label>
+            <div class="col-7">
+                <input class="form-control" type="text" id="firstName" formControlName="firstName">
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <label class="col-form-label col-4 font-weight-bold" for="lastName">Last Name</label>
+            <div class="col-7">
+                <input class="form-control" type="text" id="lastName" formControlName="lastName">
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <label class="col-form-label col-4 font-weight-bold" for="email">Email</label>
+            <div class="col-7">
+                <input class="form-control" type="text" id="emailAddress" formControlName="email">
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <label class="col-form-label col-4 font-weight-bold" for="phone">Phone</label>
+            <div class="col-7">
+                <input class="form-control" type="text" id="phoneNo" formControlName="phone">
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <label class="col-form-label col-4 font-weight-bold" for="role">Role</label>
+            <div class="col-7">
+                <input class="form-control" type="text" id="role" formControlName="role">
+            </div>
+        </div>
+    </form>
+</div>
+
+<div class="modal-footer bg-light">
+    <button *ngIf="displaying == 'players'" type="button" class="btn btn-primary"
+        (click)="updatePlayer()">Save</button>
+</div>
