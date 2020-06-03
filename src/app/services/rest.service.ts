@@ -26,6 +26,10 @@ export class RestService {
     return this.http.get<any>(`${this.baseUrl}/admin/players`, this.httpOptions);
   }
 
+  getPlayer() {
+    return this.http.get<any>(`${this.baseUrl}/admin/players`, this.httpOptions);
+  }
+
   getCoaches() {
     return this.http.get<any>(`${this.baseUrl}/admin/coaches`, this.httpOptions);
   }
@@ -56,6 +60,18 @@ export class RestService {
   
   getPlayerMatchSchedule() {
     return this.http.get<any>(`${this.baseUrl}/players/playerMatchSchedule`, this.httpOptions);
+  }
+
+  setPlayerData(playerId: string, firstName: string, lastName: string, emailAddress: string, phoneNo: string, role: string){
+    return this.http.put<any>(
+      `${this.baseUrl}/admin/updatePlayer/${playerId}`,
+      { firstName, lastName, emailAddress, phoneNo, role },
+      this.httpOptions);
+  }
+
+  deletePlayer(playerId: string){
+    console.log("RestService -> deletePlayer -> playerId", playerId)
+    return this.http.delete<any>(`${this.baseUrl}/admin/deletePlayer/${playerId}`, this.httpOptions);
   }
 
   setMatchRanks(matchId: string, playerARank: string, playerBRank: string) {
