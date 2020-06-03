@@ -70,7 +70,6 @@ export class RestService {
   }
 
   deletePlayer(playerId: string){
-    console.log("RestService -> deletePlayer -> playerId", playerId)
     return this.http.delete<any>(`${this.baseUrl}/admin/deletePlayer/${playerId}`, this.httpOptions);
   }
 
