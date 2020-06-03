@@ -13,6 +13,7 @@ const userSchema = new mongoose.Schema({
 
 userSchema.method('toJSON', function () {
     return {
+        _id: this._id,
         firstName: this.firstName,
         lastName: this.lastName,
         emailAddress: this.emailAddress,
