@@ -9,8 +9,8 @@ import { RestService } from 'src/app/services/rest.service';
   styleUrls: ['./admin-create-user.component.css'],
 })
 export class AdminCreateUserComponent implements OnInit {
-  displaying: string;
-  registrationForm: FormGroup;
+  adding: string;
+  userDetailsForm: FormGroup;
   sport = this.formBuilder.group({
     name: [''],
     rank: [''],
@@ -20,32 +20,46 @@ export class AdminCreateUserComponent implements OnInit {
     public modal: NgbActiveModal,
     private formBuilder: FormBuilder,
     private restService: RestService
-  ) {}
+  ) { }
 
   ngOnInit(): void {
-    this.registrationForm = this.formBuilder.group({
-      firstName: ['', Validators.required],
-      lastName: ['', Validators.required],
-      emailAddress: ['', Validators.required],
-      phoneNumber: ['', Validators.required],
-      password: ['', Validators.required],
-      sports: this.formBuilder.array([
-        this.formBuilder.group({
-          name: [''],
-          rank: [''],
-        }),
-      ]),
-    });
+    if (this.adding == "players") {
+      this.userDetailsForm = this.formBuilder.group({
+        firstName: ['', Validators.required],
+        lastName: ['', Validators.required],
+        emailAddress: ['', Validators.required],
+        phoneNumber: ['', Validators.required],
+        password: ['', Validators.required],
+        sports: this.formBuilder.array([
+          this.formBuilder.group({
+            name: [''],
+            rank: [''],
+          }),
+        ]),
+      });
+    }
+    else {
+      this.userDetailsForm = this.formBuilder.group({
+        firstName: ['', Validators.required],
+        lastName: ['', Validators.required],
+        emailAddress: ['', Validators.required],
+        phoneNumber: ['', Validators.required],
+        password: ['', Validators.required]
+      });
+    }
   }
 
   register(): void {
-      this.restService
-        .registerUser(this.registrationForm.value)
-        .subscribe(this.modal.close);
+    if (this.adding == "players") {
+      this.restService.registerUser(this.userDetailsForm.value).subscribe(this.modal.close);
+    }
+    else {
+      this.restService.addCoach(this.userDetailsForm.value).subscribe(this.modal.close);
+    }
   }
 
   get sportForms(): FormArray {
-    return this.registrationForm.get('sports') as FormArray;
+    return this.userDetailsForm.get('sports') as FormArray;
   }
 
   addSport(): void {

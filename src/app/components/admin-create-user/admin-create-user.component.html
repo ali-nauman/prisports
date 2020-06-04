@@ -1,54 +1,57 @@
 <div class="modal-header bg-primary text-light">
-    <h4 *ngIf="displaying == 'players'" class="modal-title" id="modal-basic-title">Create New Player</h4>
+    <h4 *ngIf="adding == 'players'" class="modal-title" id="modal-basic-title">Add Player</h4>
+    <h4 *ngIf="adding == 'coaches'" class="modal-title" id="modal-basic-title">Add Coach</h4>
+
     <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
         <span aria-hidden="true">&times;</span>
     </button>
 </div>
 
 <div class="modal-body">
-    <form [formGroup]="registrationForm">
-        <h4>Personal Details</h4>
+    <form [formGroup]="userDetailsForm">
+        <h4 *ngIf="adding == 'players'">Personal Details</h4>
 
-            <div class="form-group row">
-                <label class="col-form-label col-4" for="firstName">First Name</label>
-                <div class="col-7">
-                    <input type="text" class="form-control form-control-sm" id="firstName" placeholder="John"
-                        formControlName="firstName" required>
-                </div>
+        <div class="form-group row">
+            <label class="col-form-label col-4" for="firstName">First Name</label>
+            <div class="col-7">
+                <input type="text" class="form-control form-control-sm" id="firstName" placeholder="John"
+                    formControlName="firstName" required>
             </div>
+        </div>
 
-            <div class="form-group row">
-                <label class="col-form-label col-4" for="lastName">Last Name</label>
-                <div class="col-7">
-                    <input type="text" class="form-control form-control-sm" id="lastName" formControlName="lastName"
-                        placeholder="Doe" required>
-                </div>
+        <div class="form-group row">
+            <label class="col-form-label col-4" for="lastName">Last Name</label>
+            <div class="col-7">
+                <input type="text" class="form-control form-control-sm" id="lastName" formControlName="lastName"
+                    placeholder="Doe" required>
             </div>
-            
-            <div class="form-group row">
-                <label class="col-form-label col-4" for="phoneNumber">Phone</label>
-                <div class="col-7">
-                    <input type="text" class="form-control" id="phoneNumber" formControlName="phoneNumber"
-                        placeholder="03013454128" required>
-                </div>
-            </div>
+        </div>
 
-            <div class="form-group row">
-                <label class="col-form-label col-4" for="emailAddress">Email</label>
-                    <div class="col-7">
-                        <input type="email" class="form-control" id="emailAddress" formControlName="emailAddress"
-                        placeholder="john.doe@gmail.com" required>
-                    </div>
+        <div class="form-group row">
+            <label class="col-form-label col-4" for="phoneNumber">Phone</label>
+            <div class="col-7">
+                <input type="text" class="form-control" id="phoneNumber" formControlName="phoneNumber"
+                    placeholder="03013454128" required>
             </div>
+        </div>
 
-            <div class="form-group row">
-                <label class="col-form-label col-4" for="password">Password</label>
-                <div class="col-7">
-                    <input type="password" class="form-control" id="password" formControlName="password"
-                        placeholder="********" required>
-                </div>
+        <div class="form-group row">
+            <label class="col-form-label col-4" for="emailAddress">Email</label>
+            <div class="col-7">
+                <input type="email" class="form-control" id="emailAddress" formControlName="emailAddress"
+                    placeholder="john.doe@gmail.com" required>
             </div>
+        </div>
 
+        <div class="form-group row">
+            <label class="col-form-label col-4" for="password">Password</label>
+            <div class="col-7">
+                <input type="password" class="form-control" id="password" formControlName="password"
+                    placeholder="********" required>
+            </div>
+        </div>
+
+        <div *ngIf="adding == 'players'">
             <h4 class="mt-4">Sports</h4>
 
             <div formArrayName="sports">
@@ -58,9 +61,7 @@
 
                         <div class="col-5">
                             <div class="input-group">
-                                <!-- <div class="input-group-prepend">
-                                    <label class="input-group-text" for="name">Sport</label>
-                                </div> -->
+
                                 <select class="custom-select" formControlName="name" required>
                                     <option value="Badminton">Badminton</option>
                                     <option value="Squash">Squash</option>
@@ -72,9 +73,7 @@
 
                         <div class="col">
                             <div class="input-group">
-                                <!-- <div class="input-group-prepend">
-                                    <label class="input-group-text" for="rank">Rank</label>
-                                </div> -->
+
                                 <select class="custom-select" formControlName="rank" required>
                                     <option value="Beginner">Beginner</option>
                                     <option value="Medium">Medium</option>
@@ -94,9 +93,10 @@
             <div class="text-center">
                 <button class="btn btn-success mt-2" (click)="addSport()">Add Sport</button>
             </div>
-            
-            <div>
-                <button *ngIf="displaying == 'players'" (click)="register()" class="btn btn-primary mt-4" type="submit">Submit</button>
-            </div>
-        </form>
-    </div>
+        </div>
+    </form>
+</div>
+
+<div class="modal-footer bg-light">
+    <button (click)="register()" class="btn btn-primary mt-4" type="submit">Add</button>
+</div>
