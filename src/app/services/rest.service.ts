@@ -22,16 +22,18 @@ export class RestService {
       registerationFormValue);
   }
 
-  getPlayers() {
-    return this.http.get<any>(`${this.baseUrl}/admin/players`, this.httpOptions);
+  addCoach(coachDetails: AbstractControl) {
+    return this.http.post<any>(
+      `${this.baseUrl}/admins/coaches`,
+      coachDetails, this.httpOptions);
   }
 
-  getPlayer() {
-    return this.http.get<any>(`${this.baseUrl}/admin/players`, this.httpOptions);
+  getPlayers() {
+    return this.http.get<any>(`${this.baseUrl}/admins/players`, this.httpOptions);
   }
 
   getCoaches() {
-    return this.http.get<any>(`${this.baseUrl}/admin/coaches`, this.httpOptions);
+    return this.http.get<any>(`${this.baseUrl}/admins/coaches`, this.httpOptions);
   }
 
   getMatches() {
@@ -57,20 +59,31 @@ export class RestService {
   getPlayerPracticeSchedule() {
     return this.http.get<any>(`${this.baseUrl}/players/playerPracticeSchedule`, this.httpOptions);
   }
-  
+
   getPlayerMatchSchedule() {
     return this.http.get<any>(`${this.baseUrl}/players/playerMatchSchedule`, this.httpOptions);
   }
 
-  setPlayerData(playerId: string, firstName: string, lastName: string, emailAddress: string, phoneNo: string, role: string){
+  setCoach(coachId: string, updatedCoachData: AbstractControl) {
     return this.http.put<any>(
-      `${this.baseUrl}/admin/updatePlayer/${playerId}`,
-      { firstName, lastName, emailAddress, phoneNo, role },
+      `${this.baseUrl}/admins/coaches/${coachId}`,
+      updatedCoachData,
       this.httpOptions);
   }
 
-  deletePlayer(playerId: string){
-    return this.http.delete<any>(`${this.baseUrl}/admin/deletePlayer/${playerId}`, this.httpOptions);
+  setPlayer(playerId: string, updatedPlayerData: AbstractControl) {
+    return this.http.put<any>(
+      `${this.baseUrl}/admins/players/${playerId}`,
+      updatedPlayerData,
+      this.httpOptions);
+  }
+
+  deleteCoach(coachId: string) {
+    return this.http.delete<any>(`${this.baseUrl}/admins/coaches/${coachId}`, this.httpOptions);
+  }
+
+  deletePlayer(playerId: string) {
+    return this.http.delete<any>(`${this.baseUrl}/admins/players/${playerId}`, this.httpOptions);
   }
 
   setMatchRanks(matchId: string, playerARank: string, playerBRank: string) {
