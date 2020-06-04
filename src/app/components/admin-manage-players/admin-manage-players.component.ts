@@ -7,15 +7,13 @@ import { RestService } from 'src/app/services/rest.service';
   styleUrls: ['./admin-manage-players.component.css']
 })
 export class AdminManagePlayersComponent implements OnInit {
-  data: any;
+  players: any;
 
   constructor(private restService: RestService) { }
 
-
   ngOnInit(): void {
     this.restService.getPlayers().subscribe(
-      res => this.data = res,
+      res => this.players = res,
       err => console.error(err));
   }
-
 }
