@@ -2,6 +2,8 @@ import { Component, OnInit, Input } from '@angular/core';
 import { RestService } from 'src/app/services/rest.service';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { AdminUpdateUserComponent } from '../admin-update-user/admin-update-user.component';
+import { AdminCreateUserComponent } from "../admin-create-user/admin-create-user.component";
+
 
 @Component({
   selector: 'app-admin-user-table',
@@ -45,5 +47,12 @@ export class AdminUserTableComponent implements OnInit {
    this.populateTable();
   }
 
-  createPlayer(): void{}
+  createPlayer(): void{
+    const ref = this.modalService.open(AdminCreateUserComponent);
+    ref.componentInstance.displaying = this.displaying;
+
+    ref.result.then(onFulFilled => {
+      this.populateTable();
+    });
+  }
 }
