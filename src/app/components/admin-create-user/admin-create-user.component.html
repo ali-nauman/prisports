@@ -1,1 +1,102 @@
-<p>admin-create-user works!</p>
+<div class="modal-header bg-primary text-light">
+    <h4 *ngIf="displaying == 'players'" class="modal-title" id="modal-basic-title">Create New Player</h4>
+    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+        <span aria-hidden="true">&times;</span>
+    </button>
+</div>
+
+<div class="modal-body">
+    <form [formGroup]="registrationForm">
+        <h4>Personal Details</h4>
+
+            <div class="form-group row">
+                <label class="col-form-label col-4" for="firstName">First Name</label>
+                <div class="col-7">
+                    <input type="text" class="form-control form-control-sm" id="firstName" placeholder="John"
+                        formControlName="firstName" required>
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <label class="col-form-label col-4" for="lastName">Last Name</label>
+                <div class="col-7">
+                    <input type="text" class="form-control form-control-sm" id="lastName" formControlName="lastName"
+                        placeholder="Doe" required>
+                </div>
+            </div>
+            
+            <div class="form-group row">
+                <label class="col-form-label col-4" for="phoneNumber">Phone</label>
+                <div class="col-7">
+                    <input type="text" class="form-control" id="phoneNumber" formControlName="phoneNumber"
+                        placeholder="03013454128" required>
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <label class="col-form-label col-4" for="emailAddress">Email</label>
+                    <div class="col-7">
+                        <input type="email" class="form-control" id="emailAddress" formControlName="emailAddress"
+                        placeholder="john.doe@gmail.com" required>
+                    </div>
+            </div>
+
+            <div class="form-group row">
+                <label class="col-form-label col-4" for="password">Password</label>
+                <div class="col-7">
+                    <input type="password" class="form-control" id="password" formControlName="password"
+                        placeholder="********" required>
+                </div>
+            </div>
+
+            <h4 class="mt-4">Sports</h4>
+
+            <div formArrayName="sports">
+                <div *ngFor="let sport of sportForms.controls; let i=index" [formGroupName]="i">
+
+                    <div class="row form-group">
+
+                        <div class="col-5">
+                            <div class="input-group">
+                                <!-- <div class="input-group-prepend">
+                                    <label class="input-group-text" for="name">Sport</label>
+                                </div> -->
+                                <select class="custom-select" formControlName="name" required>
+                                    <option value="Badminton">Badminton</option>
+                                    <option value="Squash">Squash</option>
+                                    <option value="Table Tennis">Table Tennis</option>
+                                    <option value="Tennis">Tennis</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="col">
+                            <div class="input-group">
+                                <!-- <div class="input-group-prepend">
+                                    <label class="input-group-text" for="rank">Rank</label>
+                                </div> -->
+                                <select class="custom-select" formControlName="rank" required>
+                                    <option value="Beginner">Beginner</option>
+                                    <option value="Medium">Medium</option>
+                                    <option value="Advanced">Advanced</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="col">
+                            <button class="btn btn-danger" (click)="deleteSport(i)">Delete</button>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+            <div class="align-content-between">
+                <button class="btn btn-success mt-2" (click)="addSport()">Add Sport</button>
+            </div>
+            
+            <div>
+                <button *ngIf="displaying == 'players'" (click)="register()" class="btn btn-primary mt-4" type="submit">Submit</button>
+            </div>
+        </form>
+    </div>
