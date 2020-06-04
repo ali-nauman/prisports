@@ -4,22 +4,24 @@
             <th>First Name</th>
             <th>Last Name</th>
             <th>Email</th>
-            <th>Phone no.</th>
+            <th>Phone</th>
             <!-- <th *ngIf="displaying == 'player'">Sports</th> -->
             <th>Manage</th>
         </thead>
         <tbody>
-            <tr *ngFor="let row of rows">
-                <td>{{row.firstName}}</td>
-                <td>{{row.lastName}}</td>
-                <td>{{row.emailAddress}}</td>
-                <td>{{row.phoneNumber}}</td>
+            <tr *ngFor="let user of users">
+                <td>{{user.firstName}}</td>
+                <td>{{user.lastName}}</td>
+                <td>{{user.emailAddress}}</td>
+                <td>{{user.phoneNumber}}</td>
                 <td>
-                    <button class="btn btn-primary mr-2" (click)='editPlayer(row)'>Edit</button>
-                    <button class="btn btn-danger ml-2" (click)='deletePlayer(row)'>Delete</button>
+                    <button class="btn btn-primary mr-2" (click)='editUser(user)'>Edit</button>
+                    <button class="btn btn-danger ml-2" (click)='deleteUser(user)'>Delete</button>
                 </td>
             </tr>
         </tbody>
     </table>
-    <button class="btn btn-success mr-2" (click)='createPlayer()'>Add new Player</button>
+    <button *ngIf="displaying == 'players'" class="btn btn-success mr-2" (click)='createUser()'>Add Player</button>
+    <button *ngIf="displaying == 'coaches'" class="btn btn-success mr-2" (click)='createUser()'>Add Coach</button>
+
 </div>
