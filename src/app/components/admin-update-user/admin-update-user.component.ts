@@ -10,29 +10,30 @@ import { RestService } from 'src/app/services/rest.service';
 })
 export class AdminUpdateUserComponent implements OnInit {
   updateUserForm: FormGroup;
-  row: any;
+  user: any;
   displaying: string;
-  // roles = ['player', 'coach', 'admin'];
 
   constructor(
     public modal: NgbActiveModal,
     private formBuilder: FormBuilder,
     private restService: RestService
-  ) {}
+  ) { }
 
   ngOnInit(): void {
     this.updateUserForm = this.formBuilder.group({
-      firstName: [this.row.firstName],
-      lastName: [this.row.lastName],
-      email: [this.row.emailAddress],
-      phone: [this.row.phoneNumber],
-      role: [this.row.role],
-      // password: [this.row.password],
+      firstName: [this.user.firstName],
+      lastName: [this.user.lastName],
+      emailAddress: [this.user.emailAddress],
+      phoneNumber: [this.user.phoneNumber]
     });
   }
 
-  updatePlayer(): void {
-    this.restService.setPlayerData(this.row._id, this.updateUserForm.value.firstName, this.updateUserForm.value.lastName, 
-      this.updateUserForm.value.email, this.updateUserForm.value.phone, this.updateUserForm.value.role).subscribe(this.modal.close);
+  updateUser(): void {
+    if (this.displaying == "players") {
+      this.restService.setPlayer(this.user._id, this.updateUserForm.value).subscribe(this.modal.close);
+    }
+    else {
+      this.restService.setCoach(this.user._id, this.updateUserForm.value).subscribe(this.modal.close);
+    }
   }
 }

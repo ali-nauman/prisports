@@ -1,5 +1,7 @@
 <div class="modal-header bg-primary text-light">
     <h4 *ngIf="displaying == 'players'" class="modal-title" id="modal-basic-title">Edit Player</h4>
+    <h4 *ngIf="displaying == 'coaches'" class="modal-title" id="modal-basic-title">Edit Coach</h4>
+
     <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
         <span aria-hidden="true">&times;</span>
     </button>
@@ -22,29 +24,21 @@
         </div>
 
         <div class="form-group row">
-            <label class="col-form-label col-4 font-weight-bold" for="email">Email</label>
+            <label class="col-form-label col-4 font-weight-bold" for="emailAddress">Email</label>
             <div class="col-7">
-                <input class="form-control" type="text" id="emailAddress" formControlName="email">
+                <input class="form-control" type="text" id="emailAddress" formControlName="emailAddress">
             </div>
         </div>
 
         <div class="form-group row">
-            <label class="col-form-label col-4 font-weight-bold" for="phone">Phone</label>
+            <label class="col-form-label col-4 font-weight-bold" for="phoneNumber">Phone</label>
             <div class="col-7">
-                <input class="form-control" type="text" id="phoneNo" formControlName="phone">
-            </div>
-        </div>
-
-        <div class="form-group row">
-            <label class="col-form-label col-4 font-weight-bold" for="role">Role</label>
-            <div class="col-7">
-                <input class="form-control" type="text" id="role" formControlName="role">
+                <input class="form-control" type="text" id="phoneNumber" formControlName="phoneNumber">
             </div>
         </div>
     </form>
 </div>
 
 <div class="modal-footer bg-light">
-    <button *ngIf="displaying == 'players'" type="button" class="btn btn-primary"
-        (click)="updatePlayer()">Save</button>
+    <button type="button" class="btn btn-primary" (click)="updateUser()">Save</button>
 </div>
