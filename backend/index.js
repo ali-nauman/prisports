@@ -7,8 +7,8 @@ const passport = require('passport');
 const database = require('./database/database');
 database.connectWithDatabase();
 
-const accountsRouter = require('./routers/account.router');
-const coachesRouter = require('./routers/coach.router');
+const accountRouter = require('./routers/account.router');
+const coachRouter = require('./routers/coach.router');
 const playerRouter = require('./routers/player.router');
 const adminRouter = require('./routers/admin.router');
 
@@ -21,12 +21,10 @@ app.use(express.json());
 app.use(cors());
 app.use(passport.initialize());
 
-app.use('/accounts', accountsRouter);
-app.use('/coaches', coachesRouter);
+app.use('/accounts', accountRouter);
+app.use('/coaches', coachRouter);
 app.use('/players', playerRouter);
-app.use('/admin', adminRouter);
-
-
+app.use('/admins', adminRouter);
 
 const server = http.createServer(app);
 
