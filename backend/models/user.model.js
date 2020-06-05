@@ -3,7 +3,9 @@ const uniqueValidator = require('mongoose-unique-validator');
 const AutoIncrement = require('mongoose-sequence')(mongoose);
 const passportLocalMongoose = require('passport-local-mongoose');
 
-const userSchema = new mongoose.Schema({
+const Schema = mongoose.Schema;
+
+const userSchema = new Schema({
     firstName: { type: String, required: [true, "This field cannot be empty"] },
     lastName: { type: String, required: [true, "This field cannot be empty"] },
     emailAddress: { type: String, lowercase: true, unique: true, required: [true, "This field cannot be empty"], match: [/\S+@\S+\.\S+/, 'is invalid'], index: true },

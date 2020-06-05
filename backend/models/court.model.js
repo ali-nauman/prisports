@@ -1,11 +1,11 @@
 const mongoose = require('mongoose');
-// const AutoIncrement = require('mongoose-sequence')(mongoose);
 
-const courtSchema = new mongoose.Schema({
+const Schema = mongoose.Schema;
+const ObjectId = mongoose.Types.ObjectId;
+
+const courtSchema = new Schema({
     name: { type: String, required: true, unique: true },
-    sportId: { type: mongoose.Types.ObjectId, ref: 'Sport', required: true }
+    sportId: { type: ObjectId, ref: 'Sport', required: true }
 });
-
-// courtSchema.plugin(AutoIncrement, { inc_field: 'id' });
 
 module.exports = mongoose.model('Court', courtSchema);
