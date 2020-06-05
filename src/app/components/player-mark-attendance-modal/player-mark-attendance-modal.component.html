@@ -1,0 +1,42 @@
+<div class="modal-header bg-primary text-light">
+    <h4 class="modal-title" id="modal-basic-title">Mark Attendance</h4>
+    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+        <span aria-hidden="true">&times;</span>
+    </button>
+</div>
+
+<div class="modal-body">
+    <form [formGroup]="attendanceForm">
+
+        <h5>Sports</h5>
+        <p>Choose the sports you'd like to play today, with the highest priority sport being chosen first</p>
+
+        <div formArrayName="sports">
+            <div *ngFor="let sport of sports.controls; let i=index" [formGroupName]="i">
+                <div class="row">
+                    <div class="col">
+                        <div class="form-group">
+                            <label class="control-label" for="name">Sport</label>
+                            <select class="custom-select" id="name" formControlName="name" required>
+                                <option value="Badminton">Badminton</option>
+                                <option value="Squash">Squash</option>
+                                <option value="Table Tennis">Table Tennis</option>
+                                <option value="Tennis">Tennis</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="col delete-button">
+                        <button class="btn btn-danger" (click)="deleteSport(i)">Delete</button>
+                    </div>
+                </div>
+            </div>
+
+            <button class="btn btn-success mt-2" (click)="addSport()">Add Sport</button>
+        </div>
+    </form>
+</div>
+
+<div class="modal-footer bg-light">
+    <button class="btn btn-primary" (click)="submitAttendance()" [disabled]="!attendanceForm.valid">Submit</button>
+</div>
