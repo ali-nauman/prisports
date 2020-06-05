@@ -1,36 +1,30 @@
-<!-- <div class="row">
-    <div class="col-2">
-        <ul class="list-group">
-            <li class="list-group-item" (click)="changeDisplay('attendance')">Attendance</li>
-            <li class="list-group-item" (click)="changeDisplay('schedule')">Today's Schedule </li>
-            <li class="list-group-item" (click)="changeDisplay('sessions')">Practice Sessions</li>
-            <li class="list-group-item" (click)="changeDisplay('matches')">Matches </li>
-        </ul>
-    </div>
-
-    <div class="col-10 mt-3">
-        <div *ngIf="display == 'sessions'">
-            <h2>Practice Sessions</h2>
-            <app-player-table [rows]="data"></app-player-table>
-        </div>
-
-        <div *ngIf="display == 'matches'">
-            <h2>Matches</h2>
-            <app-player-table [rows]="data"></app-player-table>
-        </div>
-        <div *ngIf="display == 'attendance'">
-            <h2>Attendance</h2>
-            <app-player-table [rows]="data"></app-player-table>
-        </div>
-
-        <div *ngIf="display == 'schedule'">
-            <h2>Today's Schedule</h2>
-            <app-player-table [rows]="data"></app-player-table>
-        </div>
-    </div>
-</div> -->
-
 <div class="mt-3">
     <h2>Player Dashboard</h2>
-    <p>Here you can do player stuff</p>
+    <p>Welcome to PriSports! From here, you can mark your attendance, view your schedule for today and get a practice
+        session/match scheduled</p>
+
+    <div class="row">
+        <div class="col-6">
+            <app-dashboard-card [title]="'Mark Attendance'"
+                [text]="'Mark your attendance so that you can pick your preferred games for today'"
+                [buttonLink]="'/player/attendance'" [buttonText]="'Mark Attendance'"></app-dashboard-card>
+        </div>
+
+        <div class="col-6">
+            <app-dashboard-card [title]="'View Schedule'"
+                [text]="'View all the matches and practice sessions you have scheduled for today'"
+                [buttonLink]="'/player/schedule'" [buttonText]="'View Schedule'"></app-dashboard-card>
+        </div>
+
+        <div class="col-6 mt-5">
+            <app-dashboard-card [title]="'View Practice Sessions'"
+                [text]="'View your past practice sessions and your ranks in them'"
+                [buttonLink]="'/player/practiceSessions'" [buttonText]="'View Practice Sessions'"></app-dashboard-card>
+        </div>
+
+        <div class="col-6 mt-5">
+            <app-dashboard-card [title]="'View Matches'" [text]="'View your past matches and your ranks in them'"
+                [buttonLink]="'/player/matches'" [buttonText]="'View Matches'"></app-dashboard-card>
+        </div>
+    </div>
 </div>

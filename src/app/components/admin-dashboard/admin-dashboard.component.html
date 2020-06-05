@@ -1,4 +1,26 @@
 <div class="mt-3">
     <h2>Admin Dashboard</h2>
     <p>Here you can manage the coaches and players registered at PriSports and generate schedules for players</p>
+
+    <div class="row">
+        <div class="col-6">
+            <app-dashboard-card [title]="'Manage Coaches'"
+                [text]="'View the list of coaches currently registered at PriSports, add new coaches or update/delete existing ones'"
+                [buttonLink]="'/admin/manageCoaches'" [buttonText]="'Manage Coaches'"></app-dashboard-card>
+        </div>
+
+        <div class="col-6">
+            <app-dashboard-card [title]="'Manage Players'"
+                [text]="'View the list of players currently registered at PriSports, add new players or update/delete existing ones'"
+                [buttonLink]="'/admin/managePlayers'" [buttonText]="'Manage Players'">
+            </app-dashboard-card>
+        </div>
+
+        <div class="col-6 mt-5">
+            <app-dashboard-card [title]="'Generate Schedules'"
+                [text]="'Generate schedules for the players who are interested in playing a match or having a practice session'"
+                [buttonLink]="'/admin/generateSchedules'" [buttonText]="'Generate Schedules'">
+            </app-dashboard-card>
+        </div>
+    </div>
 </div>
