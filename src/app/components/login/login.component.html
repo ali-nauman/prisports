@@ -6,17 +6,23 @@
     <div class="col-3 mt-4">
         <h2>Login</h2>
 
-        <form [formGroup]="loginForm">
-            <div class="form-group">
-                <label for="email">Email</label>
+        <form [formGroup]="loginForm" novalidate>
+            <div class="form-group mt-3">
+                <label class="control-label" for="email">Email</label>
                 <input class="form-control col-10" type="text" id="email" placeholder="john.doe@example.com"
                     formControlName="email" required>
+                <small class="text-danger" *ngIf="email.dirty && email.invalid">Please enter a valid email
+                    address</small>
+                <small class="text-success" *ngIf="email.dirty && email.valid">Looks good!</small>
             </div>
 
+
             <div class="form-group">
-                <label for="password">Password</label>
+                <label class="control-label" for="password">Password</label>
                 <input class="form-control col-10" type="password" id="password" placeholder="********"
                     formControlName="password" required>
+                <small class="text-danger" *ngIf="password.dirty && password.invalid">Please enter a password</small>
+                <small class="text-success" *ngIf="password.dirty && password.valid">Looks good!</small>
             </div>
 
             <button class="btn btn-primary mb-2" [disabled]="!loginForm.valid" type="submit"

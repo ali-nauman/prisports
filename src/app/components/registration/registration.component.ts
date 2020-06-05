@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormBuilder, FormArray, Validators } from '@angular/forms';
+import { FormGroup, FormBuilder, FormArray, Validators, AbstractControl, ValidatorFn } from '@angular/forms';
 import { RestService } from 'src/app/services/rest.service';
 
 @Component({
@@ -9,7 +9,7 @@ import { RestService } from 'src/app/services/rest.service';
 })
 export class RegistrationComponent implements OnInit {
   registrationForm: FormGroup;
-  sport = this.formBuilder.group({
+  sport: FormGroup = this.formBuilder.group({
     name: ['', Validators.required],
     rank: ['', Validators.required]
   });
@@ -23,7 +23,7 @@ export class RegistrationComponent implements OnInit {
       {
         firstName: ['', Validators.required],
         lastName: ['', Validators.required],
-        emailAddress: ['', Validators.required],
+        emailAddress: ['', [Validators.required, Validators.email]],
         phoneNumber: ['', Validators.required],
         password: ['', Validators.required],
         confirmedPassword: ['', Validators.required],
@@ -35,23 +35,25 @@ export class RegistrationComponent implements OnInit {
   }
 
   register(): void {
-    let password = this.registrationForm.get('password').value;
-    let confirmedPassword = this.registrationForm.get('confirmedPassword').value;
-
-    if (password === confirmedPassword) {
+    if (this.password.value === this.confirmedPassword.value) {
       this.restService.registerUser(this.registrationForm.value).subscribe(res => console.log);
     }
   }
 
-  get sportForms(): FormArray {
-    return this.registrationForm.get('sports') as FormArray;
+  get firstName(): AbstractControl { return this.registrationForm.get('firstName'); }
+  get lastName(): AbstractControl { return this.registrationForm.get('lastName'); }
+  get emailAddress(): AbstractControl { return this.registrationForm.get('emailAddress'); }
+  get phoneNumber(): AbstractControl { return this.registrationForm.get('phoneNumber'); }
+  get password(): AbstractControl { return this.registrationForm.get('password'); }
+  get confirmedPassword(): AbstractControl { return this.registrationForm.get('confirmedPassword'); }
+  get sports(): FormArray { return this.registrationForm.get('sports') as FormArray; }
+
+  addSport(): void { this.sports.push(this.sport); }
+
+  confirmedPasswordValidator(control: AbstractControl): { [key: string]: boolean } | null {
+    if (control.value == this.password.value) { return { 'confirmedPassword': true }; }
+    return null;
   }
 
-  addSport(): void {
-    this.sportForms.push(this.sport);
-  }
-
-  deleteSport(i: number): void {
-    this.sportForms.removeAt(i);
-  }
+  deleteSport(i: number): void { this.sports.removeAt(i); }
 }
