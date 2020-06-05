@@ -62,8 +62,8 @@ exports.getPlayerPracticeSessionSchedule = async (req, res, next) => {
       }
     })
       .populate("courtId", { name: 1, _id: 0 })
-      .populate("playerAId", { firstName: 1, lastName: 1, _id: 0 })
-      .populate("playerBId", { firstName: 1, lastName: 1, _id: 0 })
+      .populate("playerAId", { firstName: 1, lastName: 1, _id: 1 })
+      .populate("playerBId", { firstName: 1, lastName: 1, _id: 1 })
       .populate("coachId", { firstName: 1, lastName: 1, _id: 0 });
 
     res.statusCode = 200;
@@ -83,8 +83,8 @@ exports.getPlayerMatchSchedule = async (req, res, next) => {
       }
     })
       .populate("courtId", { name: 1, _id: 0 })
-      .populate("playerAId", { firstName: 1, lastName: 1, _id: 0 })
-      .populate("playerBId", { firstName: 1, lastName: 1, _id: 0 })
+      .populate("playerAId", { firstName: 1, lastName: 1, _id: 1 })
+      .populate("playerBId", { firstName: 1, lastName: 1, _id: 1 })
       .populate("coachId", { firstName: 1, lastName: 1, _id: 0 });
 
     res.statusCode = 200;
