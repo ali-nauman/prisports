@@ -99,15 +99,10 @@ exports.postAttendance = async (req, res, next) => {
   try {
     let sportsIds = [];
 
-    req.body.sports.forEach(async (sport) => {
-      try {
-        let sportId = (await Sport.findOne({ name: sport }))._id;
-        console.log("ID found: ", sportId);
-        sportsIds.push(sportId);
-      } catch (error) {
-        console.error(error);
-      }
-    });
+    for (let i = 0; i < req.body.sports.length; ++i) {
+      let sportId = (await Sport.findOne({ name: req.body.sports[i] }))._id;
+      sportsIds.push(sportId);
+    }
 
     const attendance = await Attendance.create({
       playerId: req.user._id,
@@ -116,7 +111,7 @@ exports.postAttendance = async (req, res, next) => {
     });
 
     res.statusCode = 200;
-    res.json(attendance);
+    res.json(attendance.populate('sports'));
   }
   catch (err) {
     console.error(err);
