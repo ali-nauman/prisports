@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { RestService } from 'src/app/services/rest.service';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { PlayerMarkAttendanceModalComponent } from '../player-mark-attendance-modal/player-mark-attendance-modal.component';
 
 @Component({
   selector: 'app-player-attendance',
@@ -7,13 +8,13 @@ import { RestService } from 'src/app/services/rest.service';
   styleUrls: ['./player-attendance.component.css']
 })
 export class PlayerAttendanceComponent implements OnInit {
-  data: any;
 
-  constructor(private restService: RestService) { }
+  constructor(private modalService: NgbModal) { }
 
-  ngOnInit(): void {
-    this.restService.getAttendance().subscribe(
-      res => this.data = res,
-      err => console.error(err));
+  ngOnInit(): void { }
+
+  markAttendance() {
+    const ref = this.modalService.open(PlayerMarkAttendanceModalComponent);
+    ref.result.then(onFulfilled => { });
   }
 }

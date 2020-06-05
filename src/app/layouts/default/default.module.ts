@@ -25,6 +25,8 @@ import { AdminCreateUserComponent } from 'src/app/components/admin-create-user/a
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { CoachAssignRanksModalComponent } from 'src/app/components/coach-assign-ranks-modal/coach-assign-ranks-modal.component';
 import { DashboardCardComponent } from 'src/app/components/dashboard-card/dashboard-card.component';
+import { PlayerAttendanceTableComponent } from 'src/app/components/player-attendance-table/player-attendance-table.component';
+import { PlayerMarkAttendanceModalComponent } from 'src/app/components/player-mark-attendance-modal/player-mark-attendance-modal.component';
 
 @NgModule({
   declarations: [
@@ -47,7 +49,9 @@ import { DashboardCardComponent } from 'src/app/components/dashboard-card/dashbo
     PlayerPracticeSessionsComponent,
     PlayerAttendanceComponent,
     PlayerScheduleComponent,
-    DashboardCardComponent
+    DashboardCardComponent,
+    PlayerAttendanceTableComponent,
+    PlayerMarkAttendanceModalComponent
   ],
   imports: [
     CommonModule,
