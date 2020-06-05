@@ -7,17 +7,23 @@
             <div class="row">
                 <div class="col">
                     <div class="form-group">
-                        <label for="firstName">First Name</label>
+                        <label class="control-label" for="firstName">First Name</label>
                         <input type="text" class="form-control" id="firstName" placeholder="John"
                             formControlName="firstName" required>
+                        <small class="text-danger" *ngIf="firstName.dirty && firstName.invalid">Please enter a valid
+                            name!</small>
+                        <small class="text-success" *ngIf="firstName.dirty && firstName.valid">Looks good!</small>
                     </div>
                 </div>
 
                 <div class="col">
                     <div class="form-group">
-                        <label for="lastName">Last Name</label>
+                        <label class="control-label" for="lastName">Last Name</label>
                         <input type="text" class="form-control" id="lastName" formControlName="lastName"
                             placeholder="Doe" required>
+                        <small class="text-danger" *ngIf="lastName.dirty && lastName.invalid">Please enter a valid
+                            name!</small>
+                        <small class="text-success" *ngIf="lastName.dirty && lastName.valid">Looks good!</small>
                     </div>
                 </div>
             </div>
@@ -25,49 +31,66 @@
             <div class="row">
                 <div class="col">
                     <div class="form-group">
-                        <label for="email">Email Address</label>
+                        <label class="control-label" for="email">Email Address</label>
                         <input type="email" class="form-control" id="emailAddress" formControlName="emailAddress"
                             placeholder="john.doe@gmail.com" required>
+                        <small class="text-danger" *ngIf="emailAddress.dirty && emailAddress.invalid">Please enter a
+                            valid email address!</small>
+                        <small class="text-success" *ngIf="emailAddress.dirty && emailAddress.valid">Looks good!</small>
                     </div>
                 </div>
 
                 <div class="col">
                     <div class="form-group">
-                        <label for="phoneNumber">Phone Number</label>
+                        <label class="control-label" for="phoneNumber">Phone Number</label>
                         <input type="text" class="form-control" id="phoneNumber" formControlName="phoneNumber"
                             placeholder="03013454128" required>
+                        <small class="text-danger" *ngIf="phoneNumber.dirty && phoneNumber.invalid">Please enter a valid
+                            phone number!</small>
+                        <small class="text-success" *ngIf="phoneNumber.dirty && phoneNumber.valid">Looks good!</small>
                     </div>
                 </div>
             </div>
 
             <div class="row">
                 <div class="col">
-                    <label for="password">Password</label>
-                    <input type="password" class="form-control" id="password" formControlName="password"
-                        placeholder="********" required>
+                    <div class="form-group">
+                        <label class="control-label" for="password">Password</label>
+                        <input type="password" class="form-control" id="password" formControlName="password"
+                            placeholder="********" required>
+                        <small class="text-danger" *ngIf="password.dirty && password.invalid">Please enter a
+                            password!</small>
+                        <small class="text-success" *ngIf="password.dirty && password.valid">Looks good!</small>
+                    </div>
                 </div>
 
                 <div class="col">
-                    <label for="confirmedPassword">Confirm Password</label>
-                    <input type="password" class="form-control" id="confirmedPassword"
-                        formControlName="confirmedPassword" placeholder="********" required>
+                    <div class="form-group">
+                        <label class="control-label" for="confirmedPassword">Confirm Password</label>
+                        <input type="password" class="form-control" id="confirmedPassword"
+                            formControlName="confirmedPassword" placeholder="********" required>
+                        <small class="text-danger"
+                            *ngIf="confirmedPassword.dirty && confirmedPassword.value !== password.value">Passwords do
+                            not
+                            match!</small>
+                        <small class="text-success"
+                            *ngIf="confirmedPassword.dirty && confirmedPassword.value === password.value">Passwords
+                            match!</small>
+                    </div>
                 </div>
             </div>
 
             <h4 class="mt-4">Sports</h4>
 
             <div formArrayName="sports">
-                <div *ngFor="let sport of sportForms.controls; let i=index" [formGroupName]="i">
+                <div *ngFor="let sport of sports.controls; let i=index" [formGroupName]="i">
 
-                    <div class="row my-3">
-
+                    <div class="row">
                         <div class="col">
-                            <div class="input-group">
-                                <div class="input-group-prepend">
-                                    <label class="input-group-text" for="sportName">Sport</label>
-                                </div>
-                                <select class="custom-select" formControlName="sportName" required>
-                                    <option value="Badminton" selected>Badminton</option>
+                            <div class="form-group">
+                                <label class="control-label" for="name">Sport</label>
+                                <select class="custom-select" id="name" formControlName="name" required>
+                                    <option value="Badminton">Badminton</option>
                                     <option value="Squash">Squash</option>
                                     <option value="Table Tennis">Table Tennis</option>
                                     <option value="Tennis">Tennis</option>
@@ -76,22 +99,19 @@
                         </div>
 
                         <div class="col">
-                            <div class="input-group">
-                                <div class="input-group-prepend">
-                                    <label class="input-group-text" for="sportRank">Rank</label>
-                                </div>
-                                <select class="custom-select" formControlName="sportRank" required>
-                                    <option value="Beginner" s>Beginner</option>
+                            <div class="from-group">
+                                <label class="control-label" for="rank">Rank</label>
+                                <select class="custom-select" id="rank" formControlName="rank" required>
+                                    <option value="Beginner">Beginner</option>
                                     <option value="Medium">Medium</option>
                                     <option value="Advanced">Advanced</option>
                                 </select>
                             </div>
                         </div>
 
-                        <div class="col-2 align-self-end">
+                        <div class="col delete-button">
                             <button class="btn btn-danger" (click)="deleteSport(i)">Delete</button>
                         </div>
-
                     </div>
                 </div>
             </div>
@@ -106,7 +126,5 @@
                 <small>Already have an account? <a routerLink="/login">Login here</a></small>
             </div>
         </form>
-        <!-- This is temp -->
-        Form Status: {{registrationForm.status}}
     </div>
 </div>
