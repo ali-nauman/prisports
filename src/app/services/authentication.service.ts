@@ -41,7 +41,8 @@ export class AuthenticationService {
   }
 
   logOut(): void {
-    this.http.get<any>(`${this.baseUrl}logout`).subscribe(localStorage.clear);
+    this.http.get<any>(`${this.baseUrl}logout`).subscribe(res => { });
+    localStorage.clear();
     this.router.navigate(['']);
   }
 }
