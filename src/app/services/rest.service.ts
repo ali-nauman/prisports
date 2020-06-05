@@ -53,15 +53,15 @@ export class RestService {
   }
 
   getAttendance() {
-    return this.http.get<any>(`${this.baseUrl}/players/playerAttendance`, this.httpOptions);
+    return this.http.get<any>(`${this.baseUrl}/players/attendances`, this.httpOptions);
   }
 
   getPlayerPracticeSchedule() {
-    return this.http.get<any>(`${this.baseUrl}/players/playerPracticeSchedule`, this.httpOptions);
+    return this.http.get<any>(`${this.baseUrl}/players/practiceSchedules`, this.httpOptions);
   }
 
   getPlayerMatchSchedule() {
-    return this.http.get<any>(`${this.baseUrl}/players/playerMatchSchedule`, this.httpOptions);
+    return this.http.get<any>(`${this.baseUrl}/players/matchSchedules`, this.httpOptions);
   }
 
   setCoach(coachId: string, updatedCoachData: AbstractControl) {
@@ -98,5 +98,13 @@ export class RestService {
       `${this.baseUrl}/coaches/practiceSessions/${practiceSessionId}`,
       { playerARank, playerBRank },
       this.httpOptions);
+  }
+
+  markAttendance(attendance: AbstractControl) {
+    return this.http.post<any>(
+      `${this.baseUrl}/players/attendances/`,
+      attendance.value,
+      this.httpOptions
+    );
   }
 }
