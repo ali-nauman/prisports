@@ -1,10 +1,10 @@
 const mongoose = require("mongoose");
 
+const Attendance = mongoose.model("PlayerAttendance");
 const Match = mongoose.model("Match");
 const PracticeSession = mongoose.model("PracticeSession");
-const Attendance = mongoose.model("PlayerAttendance");
+const Sport = mongoose.model('Sport');
 
-// playerAId: req.playerAId
 exports.getMatches = async (req, res, next) => {
   try {
     const matches = await Match.find({
@@ -54,12 +54,12 @@ exports.getAttendance = async (req, res, next) => {
 
 exports.getPlayerPracticeSessionSchedule = async (req, res, next) => {
   try {
-    const practiceSessions = await PracticeSession.find({ 
-      "startTime" : 
-      {     
-          $gte:   new Date(new Date().setHours(00,00,00)) ,     
-          $lt :  new Date(new Date().setHours(23,59,59)) 
-     } 
+    const practiceSessions = await PracticeSession.find({
+      "startTime":
+      {
+        $gte: new Date(new Date().setHours(00, 00, 00)),
+        $lt: new Date(new Date().setHours(23, 59, 59))
+      }
     })
       .populate("courtId", { name: 1, _id: 0 })
       .populate("playerAId", { firstName: 1, lastName: 1, _id: 0 })
@@ -75,12 +75,12 @@ exports.getPlayerPracticeSessionSchedule = async (req, res, next) => {
 
 exports.getPlayerMatchSchedule = async (req, res, next) => {
   try {
-    const match = await Match.find({ 
-      "startTime" : 
-      {     
-          $gte:   new Date(new Date().setHours(00,00,00)) ,     
-          $lt :  new Date(new Date().setHours(23,59,59)) 
-     } 
+    const match = await Match.find({
+      "startTime":
+      {
+        $gte: new Date(new Date().setHours(00, 00, 00)),
+        $lt: new Date(new Date().setHours(23, 59, 59))
+      }
     })
       .populate("courtId", { name: 1, _id: 0 })
       .populate("playerAId", { firstName: 1, lastName: 1, _id: 0 })
@@ -93,3 +93,32 @@ exports.getPlayerMatchSchedule = async (req, res, next) => {
     console.error(err);
   }
 };
+
+// To-do: Fix
+exports.postAttendance = async (req, res, next) => {
+  try {
+    let sportsIds = [];
+
+    req.body.sports.forEach(async (sport) => {
+      try {
+        let sportId = (await Sport.findOne({ name: sport }))._id;
+        console.log("ID found: ", sportId);
+        sportsIds.push(sportId);
+      } catch (error) {
+        console.error(error);
+      }
+    });
+
+    const attendance = await Attendance.create({
+      playerId: req.user._id,
+      checkinTime: Date(),
+      sports: sportsIds
+    });
+
+    res.statusCode = 200;
+    res.json(attendance);
+  }
+  catch (err) {
+    console.error(err);
+  }
+}
