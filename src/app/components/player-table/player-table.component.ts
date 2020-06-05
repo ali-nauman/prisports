@@ -1,4 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
+import { AuthenticationService } from 'src/app/services/authentication.service';
 
 @Component({
   selector: 'app-player-table',
@@ -8,7 +9,7 @@ import { Component, OnInit, Input } from '@angular/core';
 export class PlayerTableComponent implements OnInit {
   @Input() rows: any;
 
-  constructor() { }
+  constructor(private authService: AuthenticationService) { }
 
   ngOnInit(): void {
   }
