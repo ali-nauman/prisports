@@ -1,8 +1,10 @@
 <div class="mt-3">
     <h2>Schedule</h2>
-    <h4>Practice Sessions</h4>
-    <app-player-table [rows]="data"></app-player-table>
-    <h4>Matches</h4>
-    <app-player-table [rows]="data2"></app-player-table>
+    <p>Here you can see all the practice sessions and matches that you have scheduled for today</p>
 
+    <h4 class="mt-3">Practice Sessions</h4>
+    <app-player-table [rows]="practiceSessions"></app-player-table>
+
+    <h4 class="mt-3">Matches</h4>
+    <app-player-table [rows]="matches"></app-player-table>
 </div>
