@@ -24,6 +24,7 @@ import { AdminUpdateUserComponent } from 'src/app/components/admin-update-user/a
 import { AdminCreateUserComponent } from 'src/app/components/admin-create-user/admin-create-user.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { CoachAssignRanksModalComponent } from 'src/app/components/coach-assign-ranks-modal/coach-assign-ranks-modal.component';
+import { DashboardCardComponent } from 'src/app/components/dashboard-card/dashboard-card.component';
 
 @NgModule({
   declarations: [
@@ -46,6 +47,7 @@ import { CoachAssignRanksModalComponent } from 'src/app/components/coach-assign-
     PlayerPracticeSessionsComponent,
     PlayerAttendanceComponent,
     PlayerScheduleComponent,
+    DashboardCardComponent
   ],
   imports: [
     CommonModule,
