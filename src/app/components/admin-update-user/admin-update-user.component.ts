@@ -11,7 +11,7 @@ import { RestService } from 'src/app/services/rest.service';
 export class AdminUpdateUserComponent implements OnInit {
   updateUserForm: FormGroup;
   user: any;
-  displaying: string;
+  editing: string;
 
   constructor(
     public modal: NgbActiveModal,
@@ -29,7 +29,7 @@ export class AdminUpdateUserComponent implements OnInit {
   }
 
   updateUser(): void {
-    if (this.displaying == "players") {
+    if (this.editing == "players") {
       this.restService.setPlayer(this.user._id, this.updateUserForm.value).subscribe(this.modal.close);
     }
     else {

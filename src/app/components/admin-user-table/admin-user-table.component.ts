@@ -34,7 +34,7 @@ export class AdminUserTableComponent implements OnInit {
   editUser(user: any): void {
     const ref = this.modalService.open(AdminUpdateUserComponent);
     ref.componentInstance.user = user;
-    ref.componentInstance.adding = this.displaying;
+    ref.componentInstance.editing = this.displaying;
 
     ref.result.then(onFulFilled => {
       this.populateTable();

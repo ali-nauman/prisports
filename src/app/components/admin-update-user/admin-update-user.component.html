@@ -1,6 +1,6 @@
 <div class="modal-header bg-primary text-light">
-    <h4 *ngIf="displaying == 'players'" class="modal-title" id="modal-basic-title">Edit Player</h4>
-    <h4 *ngIf="displaying == 'coaches'" class="modal-title" id="modal-basic-title">Edit Coach</h4>
+    <h4 *ngIf="editing == 'players'" class="modal-title" id="modal-basic-title">Edit Player</h4>
+    <h4 *ngIf="editing == 'coaches'" class="modal-title" id="modal-basic-title">Edit Coach</h4>
 
     <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
         <span aria-hidden="true">&times;</span>
