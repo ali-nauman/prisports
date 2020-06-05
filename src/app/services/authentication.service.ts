@@ -12,11 +12,21 @@ export class AuthenticationService {
     private http: HttpClient,
     private router: Router) { }
 
+  getUserId(): string {
+    let id: string = null;
+
+    if (this.isUserLoggedIn()) {
+      id = JSON.parse(localStorage.getItem('user'))._id;
+    }
+
+    return id;
+  }
+
   getUserRole(): string {
     let role: string = null;
 
     if (this.isUserLoggedIn()) {
-      return JSON.parse(localStorage.getItem('user')).role;
+      role = JSON.parse(localStorage.getItem('user')).role;
     }
 
     return role;
