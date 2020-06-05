@@ -19,6 +19,7 @@ import { AdminManagePlayersComponent } from './components/admin-manage-players/a
 import { AdminGenerateSchedulesComponent } from './components/admin-generate-schedules/admin-generate-schedules.component';
 import { CoachGuard } from './services/coach.guard';
 import { AdminGuard } from './services/admin.guard'
+import { PlayerGuard } from './services/player.guard';
 
 const routes: Routes = [
   {
@@ -67,19 +68,24 @@ const routes: Routes = [
       canActivate: [CoachGuard]
     }, {
       path: 'player/dashboard',
-      component: PlayerDashboardComponent
+      component: PlayerDashboardComponent,
+      canActivate: [PlayerGuard]
     }, {
       path: 'player/matches',
-      component: PlayerMatchesComponent
+      component: PlayerMatchesComponent,
+      canActivate: [PlayerGuard]
     }, {
       path: 'player/practiceSessions',
-      component: PlayerPracticeSessionsComponent
+      component: PlayerPracticeSessionsComponent,
+      canActivate: [PlayerGuard]
     }, {
       path: 'player/attendance',
-      component: PlayerAttendanceComponent
+      component: PlayerAttendanceComponent,
+      canActivate: [PlayerGuard]
     }, {
       path: 'player/schedule',
-      component: PlayerScheduleComponent
+      component: PlayerScheduleComponent,
+      canActivate: [PlayerGuard]
     }
     ]
   }
